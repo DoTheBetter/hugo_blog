@@ -1,17 +1,18 @@
 ---
-title: vps服务器安装纯净新系统的DD脚本leitbogioro-Tools
+title: VPS服务器安装纯净新系统的DD脚本leitbogioro-Tools
 date: 2024-11-19T10:17:36+08:00
-lastmod: 2024-11-24T22:13:08+08:00
+lastmod: 2024-11-25T23:27:05+08:00
 tags:
   - VPS
-  - DD脚本
+  - 脚本
   - 纯净系统安装
   - 服务器管理
 description: 使用一键DD脚本重装或更换VPS系统，推荐使用“leitbogioro”大佬的脚本，该脚本对Debian系列支持良好，并提供了详细的下载和安装步骤。
 categories:
   - VPS
   - 服务器
-collections: 
+collections:
+  - VPS系统安装
 featuredImage: ""
 featuredImagePreview: ""
 blog: "true"
