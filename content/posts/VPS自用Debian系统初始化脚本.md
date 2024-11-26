@@ -1,7 +1,7 @@
 ---
 title: VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-11-26T08:33:43+08:00
+lastmod: 2024-11-26T11:52:11+08:00
 tags:
   - VPS
   - 系统优化
@@ -497,7 +497,6 @@ systemctl restart docker
 #https://docs.docker.com/compose/install/
 Echo_Blue "[+] 安装Docker-compose..."
 curl -SL $github_proxy/https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 ####################################################################
