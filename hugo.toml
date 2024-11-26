@@ -951,7 +951,7 @@ ignoreLogs = [
     # 是否使用 预计阅读
     readingTime = true
     # 文章结束标志
-    endFlag = "-------- 全文结束 --------"
+    endFlag = "-------- 正文结束 --------"
     # 是否开启即时页面
     instantPage = true
     # 是否在侧边栏显示集合列表
