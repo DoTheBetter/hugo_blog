@@ -1,7 +1,7 @@
 ---
-title: VPS自用Debian系统初始化脚本
+title: 【原创】VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-11-26T11:52:11+08:00
+lastmod: 2024-11-26T14:44:04+08:00
 tags:
   - VPS
   - 系统优化
@@ -13,6 +13,7 @@ categories:
   - 服务器
 collections:
   - VPS系统安装
+  - 原创
 featuredImage: ""
 featuredImagePreview: ""
 blog: "true"
