@@ -1,13 +1,13 @@
 ---
 title: VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-11-25T23:48:23+08:00
+lastmod: 2024-11-26T08:33:43+08:00
 tags:
   - VPS
   - 系统优化
   - docker
   - 脚本
-description: 该脚本主要用于一键安装和配置 VPS，主要目的是为了快速搭建一个稳定、安全和高效的 Docker 环境，并通过定期维护保证系统的良好运行状态。
+description: 本文讲解了一个非常详细的自动化安装和配置过程，主要用于在Linux发行版上（特别是Debian基于的系统）进行一系列操作，包括系统优化、服务设置以及一些常用的工具安装（如Docker, Docker Compose）。
 categories:
   - VPS
   - 服务器
@@ -173,21 +173,21 @@ ufw allow 100
 
 ```shell
 #https://docs.docker.com/engine/install/debian/
-#卸载预装的非官方 Docker 软件包
+#卸载可能已安装的非官方 Docker 软件包
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove -y $pkg; done
 #使用阿里源安装，使用中国区Azure源安装 --mirror AzureChinaCloud
 curl -fsSL https://raw.githubusercontent.com/docker/docker-install/master/install.sh -o get-docker.sh
 sh get-docker.sh --mirror Aliyun
 
 #解决WARNING: bridge-nf-call-iptables is disabled
-#临时加载 br_netfilte
+#临时加载 br_netfilte，确保桥接网络功能模块可用。
 modprobe br_netfilter
 #启动时运行此模块
 cat >> /etc/modules-load.d/modules.conf << EOF
 br_netfilter
 EOF
 
-#docker 配置
+#docker 配置：Docker镜像加速和日志选项
 tee /etc/docker/daemon.json <<-'EOF'
 {
   "registry-mirrors": [
@@ -210,8 +210,10 @@ systemctl restart docker
 ## 一键安装最新版 Docker Compose
 
 ```shell
+#从GitHub下载最新版Docker Compose并设置可执行权限
 #https://docs.docker.com/compose/install/
 curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
@@ -238,7 +240,7 @@ echo "=============Installation status============="
 
 ## 生成计划任务
 
-### 系统定时更新脚本
+### 创建一个脚本来定期更新系统和清理依赖包
 
 ```shell
 cat > /root/update_system.sh << EOF
@@ -282,7 +284,7 @@ fi
 chmod 600 /var/spool/cron/crontabs/root
 ```
 
-## 完成后重启 vps
+## 提示用户检查所有配置是否正确，并询问是否需要手动重启
 
 ```shell
 echo "本次脚本运行涉及以下文件更改，请确认正确后重启："
@@ -495,6 +497,7 @@ systemctl restart docker
 #https://docs.docker.com/compose/install/
 Echo_Blue "[+] 安装Docker-compose..."
 curl -SL $github_proxy/https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 ####################################################################
