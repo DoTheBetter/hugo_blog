@@ -1,7 +1,7 @@
 ---
 title: Obsidian绿色便携版制作
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-14T22:20:21+08:00
+lastmod: 2024-11-27T18:17:48+08:00
 description: 本文介绍了两种方法用于创建 Obsidian 的官方绿色便携安装包，一种是通过修改官方安装包及创建启动脚本，另一种是使用第三方工具实现便携。
 tags:
   - 软件
@@ -29,11 +29,20 @@ dir: posts
 ‌‌‌‌　　2、便携启动脚本，在 Windows 自带记事本中粘贴以下代码，保存时选择**所有文件**，文件名后添加 **.bat**：
 
 ```shell
-‌‌‌‌　　cd %~dp0
-‌‌‌‌　　start /i app\Obsidian.exe --user-data-dir=".\-obsidian-"
+@echo off
+cd %~dp0
+start "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-" /min
 ```
 
-‌‌‌‌　　将该 bat 文件放在 Obsidian.exe 上级目录，使用的时候双击这个 bat 文件。
+**解释：**
+- `start "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-" /min`：
+    - `start` 命令表示启动
+    - 第一个引号是为标题参数留的（在本例中为空）。
+    - 第二个引号将 `app\Obsidian.exe` 括起来，表示需要启动的程序。
+    - 第三个引号为 Obsidian 启动参数，表示指定 Obsidian 配置文件夹。
+    - `/min` 参数用于最小化窗口。
+‌‌‌‌　　
+最后将该 bat 文件放在 Obsidian. exe 上级目录，使用的时候双击这个 bat 文件。
 
 ‌‌‌‌　　3、最终目录为：
 
