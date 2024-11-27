@@ -62,7 +62,7 @@ ignoreLogs = [
     pre = ""
     # 您可以在名称后添加额外信息（支持超文本标记语言格式），例如图标
     post = ""
-    name = "文章归档"
+    name = "归档"
     #菜单项的链接（url）支持内部链接、外部链接或者为空。
     url = "/archives/"
     # 当您悬停在此菜单链接上将显示标题
@@ -85,23 +85,68 @@ ignoreLogs = [
     parent = ""
     pre = ""
     post = ""
-    name = "文章分类"
+    name = "分类"
     url = "/categories/"
     title = ""
     weight = 2
     [menu.main.params]
       icon = "fa-solid fa-folder-tree"
   [[menu.main]]
+    identifier = "collections"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "合集"
+    url = "/collections/"
+    title = ""
+    weight = 3
+    [menu.main.params]
+      icon = "fa-solid fa-layer-group"
+  [[menu.main]]
     identifier = "tags"
     parent = ""
     pre = ""
     post = ""
-    name = "文章标签"
+    name = "标签"
     url = "/tags/"
     title = ""
-    weight = 3
+    weight = 4
     [menu.main.params]
       icon = "fa-solid fa-tags"
+  [[menu.main]]
+    identifier = "rss"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "RSS"
+    url = "/index.xml"
+    title = "通过 RSS 订阅"
+    weight = 95
+    [menu.main.params]
+      icon = "fa-solid fa-rss"
+      type = "desktop"
+  [[menu.main]]
+    identifier = "guestbook"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "留言"
+    url = "/guestbook/"
+    title = ""
+    weight = 99
+    [menu.main.params]
+      icon = "fa-solid fa-comment-dots"
+  [[menu.main]]
+    identifier = "about"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "关于"
+    url = "/about/"
+    title = ""
+    weight = 100
+    [menu.main.params]
+      icon = "fa fa-at"
 
 # -------------------------------------------------------------------------------------
 # 列出相关内容配置
@@ -310,10 +355,10 @@ ignoreLogs = [
 # term = ["html", "rss"]
 [outputs]
   home = ["html", "rss", "archives", "offline", "baidu_urls", "search"]
-  page = ["html"]
-  section = ["HTMLPretty"]
+  page = ["HTMLPretty"]
+  section = ["HTMLPretty", "rss"]
   taxonomy = ["HTMLPretty"]
-  term = ["HTMLPretty"]
+  term = ["HTMLPretty", "rss"]
 
 # -------------------------------------------------------------------------------------
 # 分类配置
@@ -490,7 +535,7 @@ ignoreLogs = [
     # 是否显示作者
     author = true
     # 网站创立年份
-    since = "2007"
+    since = "2006"
     # 公网安备信息，仅在中国使用（支持 HTML 格式）
     gov = "渝公网安备50011202500496号"
     # ICP 备案信息，仅在中国使用（支持 HTML 格式）
@@ -508,27 +553,27 @@ ignoreLogs = [
     # 网站创立时间
     [params.footer.siteTime]
       # 是否显示网站创立时间
-      enable = false
+      enable = true
       # 是否显示动画
       animate = true
       # 图标
       icon = "fa-solid fa-heartbeat"
       # 前缀
-      pre = "网站运行天数："
+      pre = "网站已运行："
       # 网站创立时间，例如：2021-12-18T16:15:22+08:00
-      value = "2007-12"
+      value = "2006-2-20"
     # 页面底部行排序，可选值： ["first", 0, 1, 2, 3, 4, 5, "last"]
     [params.footer.order]
       # Hugo 和主题信息
       powered = "last"
       # 版权信息
-      copyright = 0
+      copyright = "first"
       # 统计信息
-      statistics = 0
+      statistics = "1"
       # 访客信息
-      visitor = 0
+      visitor = 2
       # 备案信息
-      beian = 0
+      beian = 5
 
   # 归档页面配置
   [params.archives]
