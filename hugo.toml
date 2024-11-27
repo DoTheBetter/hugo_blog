@@ -355,7 +355,7 @@ ignoreLogs = [
 # term = ["html", "rss"]
 [outputs]
   home = ["html", "rss", "archives", "offline", "baidu_urls", "search"]
-  page = ["html"]
+  page = ["HTMLPretty"]
   section = ["HTMLPretty", "rss"]
   taxonomy = ["HTMLPretty"]
   term = ["HTMLPretty", "rss"]
