@@ -1,7 +1,7 @@
 ---
-title: 【原创】VPS自用Debian系统初始化脚本
+title: VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-11-26T14:44:04+08:00
+lastmod: 2024-11-27T22:43:10+08:00
 tags:
   - VPS
   - 系统优化
@@ -308,7 +308,7 @@ fi
 
 完整代码加入了运行权限，标题输出高亮及 github 代理的设置
 
-```shell {data-open=false}
+```shell
 #!/bin/bash
 #执行nano install.sh , 复制粘贴下列信息后，Ctrl-X 退出并保存
 #chmod +x install.sh | bash install.sh
