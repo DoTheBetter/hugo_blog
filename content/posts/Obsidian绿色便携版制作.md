@@ -1,7 +1,7 @@
 ---
 title: Obsidian绿色便携版制作
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-27T20:10:23+08:00
+lastmod: 2024-11-27T20:30:49+08:00
 description: 本文介绍了两种方法用于创建 Obsidian 的官方绿色便携安装包，一种是通过修改官方安装包及创建启动脚本，另一种是使用第三方工具实现便携。
 tags:
   - 软件
@@ -31,11 +31,11 @@ dir: posts
 ```shell
 @echo off
 cd %~dp0
-start /min "" "app-64\Obsidian.exe" "--user-data-dir=.\-obsidian-"
+start /min "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-"
 ```
 
 **解释：**
-- `start /min "" "app-64\Obsidian.exe" "--user-data-dir=.\-obsidian-"`：
+- `start /min "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-"`：
     - `start /min` 命令表示最小化窗口启动。
     - 第一对引号是为标题参数留的（在本例中为空）。
     - 第二对引号 `app\Obsidian.exe` 表示需要启动的程序。
