@@ -1,7 +1,7 @@
 ---
 title: VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-11-27T22:43:10+08:00
+lastmod: 2024-11-27T22:55:31+08:00
 tags:
   - VPS
   - 系统优化
@@ -54,7 +54,7 @@ ntpdate -u pool.ntp.org
 
 ### 配置用户限制/etc/security/limits. conf
 
-```shell
+```bash
 [ -e /etc/security/limits.d/*nproc.conf ] && rename nproc.conf nproc.conf_bk /etc/security/limits.d/*nproc.conf
 [ -z "$(grep 'session required pam_limits.so' /etc/pam.d/common-session)" ] && echo "session required pam_limits.so" >> /etc/pam.d/common-session
 sed -i '/^# End of file/,$d' /etc/security/limits.conf
@@ -73,13 +73,13 @@ EOF
 
 ### 配置主机名 /etc/hosts
 
-```shell
+```bash
 [ "$(hostname -i | awk '{print $1}')" != "127.0.0.1" ] && sed -i "s@127.0.0.1.*localhost@&\n127.0.0.1	$(hostname)@g" /etc/hosts
 ```
 
 ### 配置内核参数 /etc/sysctl. conf
 
-```shell
+```bash
 [ -z "$(grep 'net.core.default_qdisc' /etc/sysctl.conf)" ] && cat >> /etc/sysctl.conf << EOF
 # 开启 BBR ，网络优化
 net.core.default_qdisc = fq
@@ -119,13 +119,13 @@ sysctl -p
 
 ### ipv4 优先于 ipv6
 
-```shell
+```bash
 echo "precedence ::ffff:0:0/96  100" >>/etc/gai.conf
 ```
 
 ## 配置 SSH 服务器
 
-```shell
+```bash
 #随机生成ssh端口
 sshport=$(shuf -i 60000-65535 -n 1)
 sed -i "s/#Port 22/Port $sshport/g" /etc/ssh/sshd_config
@@ -153,7 +153,7 @@ systemctl restart sshd
 
 ## 安装 UFW 防火墙
 
-```shell
+```bash
 apt-get install -y ufw
 #检查下 UFW 是否已经在运行,inactive , 意思是没有被激活或不起作用。
 ufw status
@@ -172,7 +172,7 @@ ufw allow 100
 
 ## 一键安装最新版 Docker Engine
 
-```shell
+```bash
 #https://docs.docker.com/engine/install/debian/
 #卸载可能已安装的非官方 Docker 软件包
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove -y $pkg; done
@@ -210,7 +210,7 @@ systemctl restart docker
 
 ## 一键安装最新版 Docker Compose
 
-```shell
+```bash
 #从GitHub下载最新版Docker Compose并设置可执行权限
 #https://docs.docker.com/compose/install/
 curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
@@ -220,14 +220,14 @@ chmod +x /usr/local/bin/docker-compose
 
 ## 删除不必要的包和临时文件
 
-```shell
+```bash
 apt-get --purge remove -y
 apt-get clean
 ```
 
 ## 显示脚本运行结果
 
-```shell
+```bash
 echo "=============Installation status============="
 echo `date "+%Y-%m-%d %H:%M:%S"`
 echo "sshport：【$PORT】"
@@ -243,7 +243,7 @@ echo "=============Installation status============="
 
 ### 创建一个脚本来定期更新系统和清理依赖包
 
-```shell
+```bash
 cat > /root/update_system.sh << EOF
 #!/bin/bash
 
@@ -271,7 +271,7 @@ chmod +x /root/update_system.sh
 
 ### 添加定时任务到 crontab 文件
 
-```shell
+```bash
 # 检查并添加 update_system.sh 定时任务到 root 的 crontab 文件
 if ! grep -q "update_system.sh" /var/spool/cron/crontabs/root 2>/dev/null; then
     echo "0 5 * * * /root/update_system.sh > /root/update_system.log 2>&1" >> /var/spool/cron/crontabs/root   
@@ -287,7 +287,7 @@ chmod 600 /var/spool/cron/crontabs/root
 
 ## 提示用户检查所有配置是否正确，并询问是否需要手动重启
 
-```shell
+```bash
 echo "本次脚本运行涉及以下文件更改，请确认正确后重启："
 echo "/etc/security/limits.conf"
 echo "/etc/hosts"
@@ -308,7 +308,7 @@ fi
 
 完整代码加入了运行权限，标题输出高亮及 github 代理的设置
 
-```shell
+```bash
 #!/bin/bash
 #执行nano install.sh , 复制粘贴下列信息后，Ctrl-X 退出并保存
 #chmod +x install.sh | bash install.sh
