@@ -1,7 +1,7 @@
 ---
 title: Obsidian绿色便携版制作
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-27T18:17:48+08:00
+lastmod: 2024-11-27T20:10:23+08:00
 description: 本文介绍了两种方法用于创建 Obsidian 的官方绿色便携安装包，一种是通过修改官方安装包及创建启动脚本，另一种是使用第三方工具实现便携。
 tags:
   - 软件
@@ -31,18 +31,19 @@ dir: posts
 ```shell
 @echo off
 cd %~dp0
-start "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-" /min
+start /min "" "app-64\Obsidian.exe" "--user-data-dir=.\-obsidian-"
 ```
 
 **解释：**
-- `start "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-" /min`：
-    - `start` 命令表示启动
-    - 第一个引号是为标题参数留的（在本例中为空）。
-    - 第二个引号将 `app\Obsidian.exe` 括起来，表示需要启动的程序。
-    - 第三个引号为 Obsidian 启动参数，表示指定 Obsidian 配置文件夹。
-    - `/min` 参数用于最小化窗口。
-‌‌‌‌　　
-最后将该 bat 文件放在 Obsidian. exe 上级目录，使用的时候双击这个 bat 文件。
+- `start /min "" "app-64\Obsidian.exe" "--user-data-dir=.\-obsidian-"`：
+    - `start /min` 命令表示最小化窗口启动。
+    - 第一对引号是为标题参数留的（在本例中为空）。
+    - 第二对引号 `app\Obsidian.exe` 表示需要启动的程序。
+    - 第三对引号 `--user-data-dir=.\-obsidian-` 为 Obsidian 启动参数，表示指定 Obsidian 配置文件夹。
+
+‌‌‌
+
+最后将该 bat 文件放在 Obsidian. exe 上级目录，使用的时候双击这个 bat 文件。更新 Obsidian 时只需清空替换 app 文件夹内的文件即可。
 
 ‌‌‌‌　　3、最终目录为：
 
