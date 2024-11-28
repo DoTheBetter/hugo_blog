@@ -1,7 +1,7 @@
 ---
 title: 在Windows环境下使用Ollama搭建本地AI模型
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-19T23:41:52+08:00
+lastmod: 2024-11-28T11:01:30+08:00
 description: 本文介绍了怎么样在 Windows 环境下使用Ollama 搭建本地 AI 模型、使用方法及配套UI软件。
 tags:
   - Windows
@@ -18,7 +18,7 @@ blog: "true"
 dir: posts
 ---
 
-## 什么是 Ollama？
+## 1、 什么是 Ollama？
 
 Ollama 是一个开创性的人工智能 (AI) 和机器学习 (ML) 工具平台，它彻底简化了 AI 模型的开发和使用流程。
 
@@ -28,7 +28,7 @@ Ollama 是一个开创性的人工智能 (AI) 和机器学习 (ML) 工具平台�
 - Ollama 让先进的 AI 模型和计算资源变得触手可及，不再是少数人的「专利」。
 - 对 AI 和 ML 社区来说，Ollama 的出现具有里程碑意义，它加速了 AI 技术的普及，让更多人能够实践自己的 AI 创意。
 
-## Ollama 的独特优势
+## 2、 Ollama 的独特优势
 
 Ollama 能够从众多 AI 工具中脱颖而出，主要得益于以下几个关键特性：
 
@@ -39,13 +39,13 @@ Ollama 能够从众多 AI 工具中脱颖而出，主要得益于以下几个关
 
 通过这些精心设计的功能，Ollama 不仅解决了 AI 开发中的常见痛点，还大大降低了 AI 技术的应用门槛，为 AI 的广泛应用铺平了道路。
 
-## 为什么要在 Windows 环境下搭建本地 AI 模型
+## 3、 为什么要在 Windows 环境下搭建本地 AI 模型
 
 本来准备在 NAS 里搭建本地 AI 模型的，但是 NAS 的 CPU 实在太弱了，测试的时候 CPU 直接 100%，而 windows 电脑配置高很多，CPU、显卡、内存都不错，浪费可惜了。直接用 Ollama windows 端搭建本地 AI 模型，不再用 Hyper-V 虚拟机或 Docker 中转浪费性能。
 
-## 一、Ollama 安装与使用
+## 4、 Ollama 安装与使用
 
-### （一）下载与安装
+### 4.1、 下载与安装
 
 ![下载 Ollama on Windows 版本](attachments/0414a9cd0bcabad6b278df1be6a60d28_MD5.png)
 
@@ -53,7 +53,7 @@ Ollama 现在已提供 Windows 版本，要求 Windows 10 及以上版本。下�
 
 Ollama 默认会随 Windows 自动启动，你可以在「文件资源管理器」的地址栏中访问以下路径 `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`，删除其中的 `Ollama.lnk` 快捷方式文件，阻止它自动启动。
 
-### （二）环境变量设置
+### 4.2、 环境变量设置
 
 Ollama 有几个常用的系统环境变量参数需要设置。设置环境变量可以通过使用 Windows + R 快捷键打开「运行」对话框，输入命令 `C:\Windows\system32\rundll32.exe sysdm.cpl, EditEnvironmentVariables`，进入系统属性后在环境变量中进行设置。用户变量下新增变量记录即可完成环境变量的设置。
 
@@ -65,7 +65,7 @@ Ollama 有几个常用的系统环境变量参数需要设置。设置环境变�
 
 ![指定 Ollama on Windows 环境变量](attachments/d938b1bc0c5cd3edb359a7f821a8fcbd_MD5.png)
 
-### （三）管理本地已有大模型
+### 4.3、管理本地已有大模型
 
 > [!注意]
 > 你需要至少有 8GB 的内存来运行 7B 模型，16GB 来运行 13B 模型，以及 32GB 来运行 33B 模型。
@@ -85,9 +85,9 @@ qwen2.5:7b-instruct          845dbda0ea48    4.7 GB    12 hours ago
 3. 查看运行中模型列表：通过 `ollama ps` 命令可以查看本地正在运行的模型列表。
 4. 复制本地大模型：使用 `ollama cp` 本地存在的模型名新复制模型名命令可以复制本地大模型。
 
-### （四）下载大模型方式
+### 4.4、下载大模型方式
 
-#### 直接从远程仓库下载：这是最推荐、最常用的方式
+#### 4.4.1、 直接从远程仓库下载：这是最推荐、最常用的方式
 
 1. 使用 `ollama pull` 命令直接从 Ollama 远程仓库下载或更新模型。例如：
 
@@ -101,7 +101,7 @@ ollama pull qwen2:0.5b
 ollama pull qwen2
 ```
 
-#### 通过 GGUF 模型权重文件导入
+#### 4.4.2、 通过 GGUF 模型权重文件导入
 
 1. 将 GGUF 格式的模型文件放置在指定路径。
 2. 使用 `ollama import` 命令导入模型。例如：
@@ -110,7 +110,7 @@ ollama pull qwen2
 ollama import path/to/your/gguf/model.bin qwen2:0.5b
 ```
 
-#### 通过 safetensors 模型权重文件导入
+#### 4.4.3、 通过 safetensors 模型权重文件导入
 
 1. 将 safetensors 格式的模型文件放置在指定路径。
 2. 使用 `ollama import` 命令导入模型。例如：
@@ -119,7 +119,7 @@ ollama import path/to/your/gguf/model.bin qwen2:0.5b
 ollama import path/to/your/safetensors/model.safetensors qwen2:0.5b
 ```
 
-## 二、Ollama UI 软件
+## 5、 Ollama UI 软件
 
 为了方便使用，本地应用无需部署，开箱即用，可以使用以下软件搭配 Ollama 使用：
 
