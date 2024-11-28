@@ -1,7 +1,7 @@
 ---
 title: 自用Obsidian插件
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-14T22:30:23+08:00
+lastmod: 2024-11-28T12:01:40+08:00
 description: 本文列举了一系列适用于 Obsidian 的功能丰富和增强体验的官方与第三方插件。
 tags:
   - Obsidian
