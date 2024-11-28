@@ -4,7 +4,7 @@ name: Update theme
 
 on:
   schedule:
-    - cron: '0 22 * * *'  # 每天执行一次
+    - cron: '0 22 */7 * *'  # 每天执行一次
   workflow_dispatch:  # 允许手动触发
 
 jobs:
