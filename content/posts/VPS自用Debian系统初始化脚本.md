@@ -1,7 +1,7 @@
 ---
 title: VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-11-27T22:55:31+08:00
+lastmod: 2024-11-28T10:59:01+08:00
 tags:
   - VPS
   - 系统优化
@@ -31,7 +31,7 @@ dir: posts
     - 创建并设置了系统的自动更新脚本，每天凌晨 5 点执行一次以确保软件包最新且无冗余依赖。
     - 添加了 ntpdate 命令的定时任务，每 20 分钟同步系统时间。
 
-## 系统更新并安装常用软件包
+## 1、 系统更新并安装常用软件包
 
 ```shell
 apt-get update -y
@@ -39,7 +39,7 @@ apt-get upgrade -y
 apt-get install -y wget curl apt-transport-https ca-certificates
 ```
 
-## 时区及时间同步设置
+## 2、 时区及时间同步设置
 
 ```shell
 # 时区设置
@@ -50,9 +50,9 @@ apt-get install -y ntpdate
 ntpdate -u pool.ntp.org
 ```
 
-## 系统设置
+## 3、 系统设置
 
-### 配置用户限制/etc/security/limits. conf
+### 3.1、 配置用户限制/etc/security/limits. conf
 
 ```bash
 [ -e /etc/security/limits.d/*nproc.conf ] && rename nproc.conf nproc.conf_bk /etc/security/limits.d/*nproc.conf
@@ -71,13 +71,13 @@ root hard nofile 1000000
 EOF
 ```
 
-### 配置主机名 /etc/hosts
+### 3.2、 配置主机名 /etc/hosts
 
 ```bash
 [ "$(hostname -i | awk '{print $1}')" != "127.0.0.1" ] && sed -i "s@127.0.0.1.*localhost@&\n127.0.0.1	$(hostname)@g" /etc/hosts
 ```
 
-### 配置内核参数 /etc/sysctl. conf
+### 3.3、 配置内核参数 /etc/sysctl. conf
 
 ```bash
 [ -z "$(grep 'net.core.default_qdisc' /etc/sysctl.conf)" ] && cat >> /etc/sysctl.conf << EOF
@@ -117,13 +117,13 @@ EOF
 sysctl -p
 ```
 
-### ipv4 优先于 ipv6
+### 3.4、 ipv4 优先于 ipv6
 
 ```bash
 echo "precedence ::ffff:0:0/96  100" >>/etc/gai.conf
 ```
 
-## 配置 SSH 服务器
+## 4、 配置 SSH 服务器
 
 ```bash
 #随机生成ssh端口
@@ -151,7 +151,7 @@ EOF
 systemctl restart sshd
 ```
 
-## 安装 UFW 防火墙
+## 5、 安装 UFW 防火墙
 
 ```bash
 apt-get install -y ufw
@@ -170,7 +170,7 @@ ufw allow 443
 ufw allow 100
 ```
 
-## 一键安装最新版 Docker Engine
+## 6、 一键安装最新版 Docker Engine
 
 ```bash
 #https://docs.docker.com/engine/install/debian/
@@ -208,7 +208,7 @@ systemctl daemon-reload
 systemctl restart docker
 ```
 
-## 一键安装最新版 Docker Compose
+## 7、 一键安装最新版 Docker Compose
 
 ```bash
 #从GitHub下载最新版Docker Compose并设置可执行权限
@@ -218,14 +218,14 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
-## 删除不必要的包和临时文件
+## 8、 删除不必要的包和临时文件
 
 ```bash
 apt-get --purge remove -y
 apt-get clean
 ```
 
-## 显示脚本运行结果
+## 9、 显示脚本运行结果
 
 ```bash
 echo "=============Installation status============="
@@ -239,9 +239,9 @@ docker-compose --version
 echo "=============Installation status============="
 ```
 
-## 生成计划任务
+## 10、 生成计划任务
 
-### 创建一个脚本来定期更新系统和清理依赖包
+### 10.1、 创建一个脚本来定期更新系统和清理依赖包
 
 ```bash
 cat > /root/update_system.sh << EOF
@@ -269,7 +269,7 @@ EOF
 chmod +x /root/update_system.sh
 ```
 
-### 添加定时任务到 crontab 文件
+### 10.2、 添加定时任务到 crontab 文件
 
 ```bash
 # 检查并添加 update_system.sh 定时任务到 root 的 crontab 文件
@@ -285,7 +285,7 @@ fi
 chmod 600 /var/spool/cron/crontabs/root
 ```
 
-## 提示用户检查所有配置是否正确，并询问是否需要手动重启
+## 11、 提示用户检查所有配置是否正确，并询问是否需要手动重启
 
 ```bash
 echo "本次脚本运行涉及以下文件更改，请确认正确后重启："
@@ -304,7 +304,7 @@ else
 fi
 ```
 
-## 完整脚本代码
+## 12、 完整脚本代码
 
 完整代码加入了运行权限，标题输出高亮及 github 代理的设置
 
