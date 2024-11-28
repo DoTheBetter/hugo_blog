@@ -1075,9 +1075,9 @@ ignoreLogs = [
       # 是否显示代码块包装器的复制按钮
       copy = true
       # 是否显示代码块包装器的编辑按钮
-      edit = false
+      edit = true
       # 默认展开显示的代码行数
-      maxShownLines = 20
+      maxShownLines = 16
     # Mapbox GL JS 配置 (https://docs.mapbox.com/mapbox-gl-js)
     [params.page.mapbox]
       # Mapbox GL JS 的 access token
