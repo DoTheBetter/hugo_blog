@@ -13,7 +13,7 @@
 # 网站标题
 title = "胡说八道"
 # 主机名和根路径
-baseURL = "https://www.5dzone.com/"
+baseURL = "https://www.5dzone.com"
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = ["FixIt"] # 在您的站点配置文件中启用
 # 确定默认内容语言 ["en", "zh-cn", "fr", "pl", ...]
@@ -31,9 +31,9 @@ copyright = "本站所有文章除特别声明外均为原创，采用 BY-NC-SA 
 # 是否使用robots. txt
 enableRobotsTXT = true
 # 是否使用git提交日志
-enableGitInfo = true
+enableGitInfo = false
 # 是否使用表情符号代码
-enableEmoji = true
+enableEmoji = false
 # 用于输出html后缀 https://github.com/orgs/hugo-fixit/discussions/377
 uglyURLs = true
 # 时区
@@ -154,35 +154,35 @@ ignoreLogs = [
 # -------------------------------------------------------------------------------------
 
 [related]
-  includeNewer = false
+  includeNewer = true
   threshold = 80
-  toLower = false
+  toLower = true
 [[related.indices]]
-  applyFilter = false
+  applyFilter = true
   cardinalityThreshold = 0
   name = 'keywords'
   pattern = ''
-  toLower = false
+  toLower = true
   type = 'basic'
   weight = 100
 [[related.indices]]
-  applyFilter = false
+  applyFilter = true
   cardinalityThreshold = 0
   name = 'date'
   pattern = ''
-  toLower = false
+  toLower = true
   type = 'basic'
   weight = 10
 [[related.indices]]
-  applyFilter = false
+  applyFilter = true
   cardinalityThreshold = 0
   name = 'tags'
   pattern = ''
-  toLower = false
+  toLower = true
   type = 'basic'
   weight = 80
 [[related.indices]]
-  applyFilter = false
+  applyFilter = true
   name = 'fragmentrefs'
   type = 'fragments'
   weight = 80
@@ -504,7 +504,7 @@ ignoreLogs = [
       # 副标题名称
       name = "我的地盘我作主"
       # 是否为副标题显示打字机动画
-      typeit = true
+      typeit = false
 
   # 面包屑导航配置
   [params.breadcrumb]
@@ -522,7 +522,7 @@ ignoreLogs = [
   # 文章导航配置
   [params.navigation]
     # 是否在 section 页面范围内显示文章导航
-    inSection = false
+    inSection = true
     # 是否反转 下一篇/上一篇 文章导航顺序
     reverse = false
 
@@ -553,7 +553,7 @@ ignoreLogs = [
     # 网站创立时间
     [params.footer.siteTime]
       # 是否显示网站创立时间
-      enable = true
+      enable = false
       # 是否显示动画
       animate = true
       # 图标
@@ -778,6 +778,13 @@ ignoreLogs = [
   [params.taskList]
     # tip = "fa-regular fa-lightbulb"
 
+  # 版本简码配置
+  [params.repoVersion]
+    # url prefix for the release tag
+    url = "https://github.com/hugo-fixit/FixIt/releases/tag/v"
+    # project name
+    name = "FixIt"
+
   # PanguJS配置
   [params.pangu]
     enable = true  # 是否启用 PanguJS 适用于中文写作用户
@@ -867,9 +874,9 @@ ignoreLogs = [
   # 兼容性设置
   [params.compatibility]
     # 是否使用 Polyfill.io 来兼容旧式浏览器
-    polyfill = false
+    polyfill = true
     # 是否使用 object-fit-images 来兼容旧式浏览器
-    objectFit = false
+    objectFit = true
 
   # 在左上角或者右上角显示 GitHub 开源链接
   [params.githubCorner]
@@ -889,7 +896,7 @@ ignoreLogs = [
   [params.backToTop]
     enable = true
     # 是否显示滚动百分比
-    scrollpercent = false
+    scrollpercent = true
 
   # 阅读进度条配置
   [params.readingProgress]
@@ -981,11 +988,11 @@ ignoreLogs = [
     # 是否显示原始 Markdown 文档内容的链接
     linkToMarkdown = false
     # 是否显示查看文章源码的链接
-    linkToSource = true
+    linkToSource = false
     # 是否显示编辑文章的链接
-    linkToEdit = true
+    linkToEdit = false
     # 是否显示报告文章问题的链接
-    linkToReport = true
+    linkToReport = false
     # 页面样式 ["narrow", "normal", "wide", ...]
     pageStyle = "normal"
     # 开启自动书签支持
@@ -1043,7 +1050,7 @@ ignoreLogs = [
         onlyMainSection = true
         [params.page.heading.number.format]
           h1 = "{title}"
-          h2 = "{h2} {title}"
+          h2 = "{h2}. {title}"
           h3 = "{h2}.{h3} {title}"
           h4 = "{h2}.{h3}.{h4} {title}"
           h5 = "{h2}.{h3}.{h4}.{h5} {title}"
@@ -1068,9 +1075,9 @@ ignoreLogs = [
       # 是否显示代码块包装器的复制按钮
       copy = true
       # 是否显示代码块包装器的编辑按钮
-      edit = true
+      edit = false
       # 默认展开显示的代码行数
-      maxShownLines = 10
+      maxShownLines = 20
     # Mapbox GL JS 配置 (https://docs.mapbox.com/mapbox-gl-js)
     [params.page.mapbox]
       # Mapbox GL JS 的 access token
