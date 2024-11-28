@@ -1,7 +1,7 @@
 ---
 title: VPS服务器安装纯净新系统的DD脚本leitbogioro-Tools
 date: 2024-11-19T10:17:36+08:00
-lastmod: 2024-11-28T11:00:35+08:00
+lastmod: 2024-11-28T12:33:10+08:00
 tags:
   - VPS
   - 脚本
@@ -26,59 +26,47 @@ dir: posts
 3. 商家提供的系统大多都是改装过的，不纯净，可能存在软件兼容行问题；
 4. 商家提供的系统大多带有监控，特别是某里云，某鹅云，卸载监控和排查后门不是那么简单的。
 
-## 1、DD 脚本的选择
+## 1. DD 脚本的选择
 
 网络上的 dd 脚本很多，对 vps 的支持可能不一样，这个脚本不行就换个脚本。我用的脚本是 "leitbogioro"/" 天权璇玑 " 大佬的脚本，这个脚本对 debian 支持很好。
 
 脚本地址：
-
 [https://github.com/leitbogioro/Tools](https://github.com/leitbogioro/Tools "https://github.com/leitbogioro/Tools")
-
 [https://www.nodeseek.com/post-9383-1](https://www.nodeseek.com/post-9383-1 "https://www.nodeseek.com/post-9383-1")
-
 [https://hostloc.com/thread-1159839-1-1.html](https://hostloc.com/thread-1159839-1-1.html "https://hostloc.com/thread-1159839-1-1.html")
 
-## 2、脚本用法
+## 2. 脚本用法
 
-### 2.1、准备工作
+### 2.1. 准备工作
 
 + 如果你不是 root 用户，请尝试执行以下命令切换获取 root 用户权限：
-
 ```shell
 sudo -s
 ```
-
 切换到 root 用户的默认方向
-
 ```shell
 cd ~
 ```
-
 然后继续下载并执行这个脚本。
 
 + 依赖项和操作系统支持以下列表，以安装到脚本支持的操作系统：
-
 Debian 系列 (Debian / Ubuntu / Kali):
-
 ```shell
 apt update -y
 apt install wget -y
 ```
 
 RedHat 系列，仅基于 RedHat 7+，grub2(CentOS / AlmaLinux / CloudLinux / RockyLinux / OracleLinux / Fedora / VzLinux / ScientificOS / RedHat Enterprise Linux / TennisOpenOS / AWS AmazonLinux / AlibabaCloudLinux 或 AliyunLinux / OpenAnolis)：
-
 ```shell
 yum install wget -y
 ```
 
 或者（适用于 Redhat 8+）：
-
 ```shell
 dnf install wget -y
 ```
 
 Alpine Linux：
-
 ```shell
 apk update
 apk add bash wget
@@ -86,32 +74,30 @@ sed -i 's/root:\/bin\/ash/root:\/bin\/bash/g' /etc/passwd
 ```
 
 + 下载：
-
 ```shell
 wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh
 ```
 
 中国大陆服务器：
-
 ```shell
 wget --no-check-certificate -qO InstallNET.sh 'https://gitee.com/mb9e8j2/Tools/raw/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh
 ```
 
-### 2.2、快速开始（**当且仅当脚本不加 -pwd -port -mirror 等参数时有效，如果加了，必须指定对应系统的发行版版本号！**）
+### 2.2. 快速开始（**当且仅当脚本不加 -pwd -port -mirror 等参数时有效，如果加了，必须指定对应系统的发行版版本号！**）
 
-#### 2.2.1、 Debian 12
+#### 2.2.1. Debian 12
 
 ```shell
 bash InstallNET.sh -debian # -debian 7-12：Debian 7 及更高版本，默认：12
 ```
 
-#### 2.2.2、 Kali rolling
+#### 2.2.2. Kali rolling
 
 ```shell
 bash InstallNET.sh -kali # -kali rolling/dev/experimental：支持 rolling/dev/experimental 三个分支，默认推荐：rolling
 ```
 
-#### 2.2.3、 Alpine Linux Edge
+#### 2.2.3. Alpine Linux Edge
 
 ```shell
 bash InstallNET.sh -alpine # -alpine 3.16-3.18/edge：Alpine Linux 3.16 及更高版本，默认推荐：edge
@@ -119,43 +105,43 @@ bash InstallNET.sh -alpine # -alpine 3.16-3.18/edge：Alpine Linux 3.16 及更�
 
 **Alpine Linux 是一种轻量级的 Linux 版本，对性能较低的机器比较友好，系统内存至少需要 256MB。**
 
-#### 2.2.4、 CentOS 9 stream
+#### 2.2.4. CentOS 9 stream
 
 ```shell
 bash InstallNET.sh -centos # -centos 7 或 8/9-stream：CentOS 7 及更高版本，默认：9-stream
 ```
 
-#### 2.2.5、 AlmaLinux 9
+#### 2.2.5. AlmaLinux 9
 
 ```shell
 bash InstallNET.sh -almalinux # -almalinux/alma 8/9 : AlmaLinux 8 及更高版本，默认：9
 ```
 
-#### 2.2.6、 RockyLinux 9
+#### 2.2.6. RockyLinux 9
 
 ```shell
 bash InstallNET.sh -rockylinux # -rockylinux/rocky 8/9 : RockyLinux 8 及更高版本，默认：9
 ```
 
-#### 2.2.7、 Fedora 39
+#### 2.2.7. Fedora 39
 
 ```shell
 bash InstallNET.sh -fedora # -fedora 38/39：Fedora 38 及更高版本，默认：39
 ```
 
-#### 2.2.8、 Ubuntu 22.04
+#### 2.2.8. Ubuntu 22.04
 
 ```shell
 bash InstallNET.sh -ubuntu # -ubuntu 20.04/22.04/24.04（测试版，不稳定，请勿在生产环境中安装！）：Ubuntu 20.04 及更高版本，默认：22.04
 ```
 
-#### 2.2.9、 适用于工作站的 Windows 11 专业版
+#### 2.2.9. 适用于工作站的 Windows 11 专业版
 
 ```shell
 bash InstallNET.sh -windows # -windows 10/11/2012/2016/2019/2022：，默认：11
 ```
 
-### 2.3、 高级用法
+### 2.3. 高级用法
 
 示例：
 
@@ -202,23 +188,23 @@ bash InstallNET.sh -debian/kali/ubuntu/centos/almalinux/rockylinux/fedora(os typ
 + **-firmware** : 指定 Debian 和 Kali 的驱动以支持老版本的硬件，如果你的服务器位于中国大陆，程序会切换到 ' 中国科学技术大学镜像 ( [https://mirrors.ustc.edu.cn/debian-cdimage/](https://mirrors.ustc.edu.cn/debian-cdimage/) )' 以加快下载速度，默认镜像来自 [http://cdimage.debian.org/cdimage/](http://cdimage.debian.org/cdimage/)。
 + **-architecture "32/i386 或 64/amd64 或 arm/arm64"**：操作系统位。程序将自动检测并将 CPU 架构从您的机器重定向到将要安装的新系统，如果您不熟悉它，请不要指定它！
 
-### 2.4、SSH 或 RDP 服务的默认配置
+### 2.4. SSH 或 RDP 服务的默认配置
 
 **推荐的桌面终端客户端是 Xshell 或 Putty。**
 
-#### 2.4.1、 默认用户名
+#### 2.4.1. 默认用户名
 
 对于 Linux：root
 
 对于 Windows：Administrator
 
-#### 2.4.2、 默认密码
+#### 2.4.2. 默认密码
 
 对于 Linux：LeitboGi0ro
 
 对于 Windows：Teddysun.com
 
-#### 2.4.3、 默认端口
+#### 2.4.3. 默认端口
 
 Linux：与原先系统一样，以终端方式登录，
 
