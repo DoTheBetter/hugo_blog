@@ -238,8 +238,13 @@ ignoreLogs = [
           enable = true
         [markup.goldmark.extensions.extras.superscript]
           enable = true
-    # TODO passthrough refactor https://gohugo.io/getting-started/configuration-markup/#parserattributeblock
+    # TODO passthrough refactor https://gohugo.io/render-hooks/passthrough/
     # TODO hugo 0.122.0 https://gohugo.io/content-management/mathematics/
+    # [markup.goldmark.extensions.passthrough]
+    #   enable = true
+    #   [markup.goldmark.extensions.passthrough.delimiters]
+    #     block = [['\[', '\]'], ['$$', '$$']]
+    #     inline = [['\(', '\)'], ['$', '$']]
     [markup.goldmark.parser]
       [markup.goldmark.parser.attribute]
         block = true
@@ -450,7 +455,7 @@ ignoreLogs = [
   [params.search]
     # 是否启用搜索
     enable = true
-    # 搜索引擎的类型，可选值：algolia、fuse
+    # 搜索引擎的类型，可选值：algolia、fuse、cse
     type = "fuse"
     # 文章内容最长索引长度
     contentLength = 4000
@@ -477,9 +482,22 @@ ignoreLogs = [
       location = 0  # 位置
       threshold = 0.3  # 阈值
       distance = 100  # 距离
-      ignoreLocation = true  # 是否忽略位置
+      ignoreLocation = false  # 是否忽略位置
       useExtendedSearch = false  # 是否使用扩展搜索
       ignoreFieldNorm = false  # 是否忽略字段规范化
+
+  # FixIt 0.3.16 | 自定义搜索引擎（CSE）
+  [params.cse]
+    # 搜索引擎: ["google", "bing"]
+    engine = ""
+    # 搜索结果页 URL (layout: search)
+    resultsPage = "/search/"
+    # Google: https://programmablesearchengine.google.com/
+    # Google Custom Search Engine Context
+    [params.cse.google]
+      cx = ""
+    # Bing (Unsupported): https://www.customsearch.ai/
+    [params.cse.bing]
 
   # 页面头部导航栏配置
   [params.header]
@@ -854,6 +872,31 @@ ignoreLogs = [
       id = ""
       # 如果您是自托管，则跟踪器的服务器url
       server = ""
+    # FixIt 0.3.16 | 百度分析
+    [params.analytics.baidu]
+      id = ""
+    # FixIt 0.3.16 | Umami 分析
+    [params.analytics.umami]
+      data_website_id = ""
+      src = ""
+      data_host_url = ""
+      data_domains = ""
+    # FixIt 0.3.16 | Plausible 分析
+    [params.analytics.plausible]
+      data_domain = ""
+      src = ""
+    # FixIt 0.3.16 | Cloudflare 分析
+    [params.analytics.cloudflare]
+      token = ""
+    # FixIt 0.3.16 | Splitbee 分析
+    [params.analytics.splitbee]
+      enable = false
+      # no cookie mode
+      no_cookie = true
+      # respect the do not track setting of the browser
+      do_not_track = true
+      # token(optional), more info on https://splitbee.io/docs/embed-the-script
+      data_token = ""
 
   # Cookie 许可配置
   [params.cookieconsent]
@@ -1050,7 +1093,7 @@ ignoreLogs = [
         onlyMainSection = true
         [params.page.heading.number.format]
           h1 = "{title}"
-          h2 = "{h2}. {title}"
+          h2 = "{h2} {title}"
           h3 = "{h2}.{h3} {title}"
           h4 = "{h2}.{h3}.{h4} {title}"
           h5 = "{h2}.{h3}.{h4}.{h5} {title}"
@@ -1219,14 +1262,14 @@ ignoreLogs = [
         login = "enable"
         wordLimit = 0
         pageSize = 10
-        imageUploader = false # FixIt 0.2.15 | NEW
-        highlighter = false # FixIt 0.2.15 | NEW
-        comment = false # FixIt 0.2.15 | NEW
-        texRenderer = false # FixIt 0.2.16 | NEW
-        search = false # FixIt 0.2.16 | NEW
-        recaptchaV3Key = "" # FixIt 0.2.16 | NEW
-        turnstileKey = "" # FixIt 0.3.8 | NEW
-        reaction = false # FixIt 0.2.18 | NEW
+        imageUploader = false
+        highlighter = false
+        comment = false
+        texRenderer = false
+        search = false
+        recaptchaV3Key = ""
+        turnstileKey = ""
+        reaction = false
       # Facebook 评论系统设置 (https://developers.facebook.com/docs/plugins/comments)
       [params.page.comment.facebook]
         enable = false
