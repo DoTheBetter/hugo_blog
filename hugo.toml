@@ -861,7 +861,7 @@ ignoreLogs = [
 
   # 网站分析配置
   [params.analytics]
-    enable = false
+    enable = true
     # Google Analytics 配置
     [params.analytics.google]
       id = ""
