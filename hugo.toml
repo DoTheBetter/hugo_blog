@@ -818,9 +818,9 @@ ignoreLogs = [
     # 是否启用不蒜子计数器
     enable = true
     # 不蒜子计数器核心脚本地址. Default is https://vercount.one/js,支持 Vercount, 不蒜子, etc.
-    source = "https://bsz.5dzone.com:100/js"
+    source = "https://vercount.one/js"
     # 是否显示网站访问量
-    siteViews = true
+    siteViews = false
     # 是否显示页面访问量
     pageViews = true
 
@@ -830,7 +830,7 @@ ignoreLogs = [
     bing = ""
     yandex = ""
     pinterest = ""
-    baidu = ""
+    baidu = "codeva-wL8DdaRoeL"
     so = ""
     sogou = ""
 
