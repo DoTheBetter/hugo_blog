@@ -880,7 +880,7 @@ ignoreLogs = [
       data_website_id = "b5dd181a-87cc-4f2d-8c93-e510a83b3d03"
       src = "https://tongji.5dzone.com:100/L8PGBFu6.js"
       data_host_url = "https://tongji.5dzone.com:100"
-      data_domains = "https://www.5dzone.com"
+      data_domains = "www.5dzone.com"
     # FixIt 0.3.16 | Plausible 分析
     [params.analytics.plausible]
       data_domain = ""
