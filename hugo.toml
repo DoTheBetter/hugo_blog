@@ -912,7 +912,7 @@ ignoreLogs = [
     # CDN数据文件名，默认禁用。可选值：jsdelivr.yml、unpkg.yml 等。
     # 位于 "themes/FixIt/assets/data/cdn/" 目录
     # 您可以将自己的数据文件存储在项目下的同一路径中："assets/data/cdn/"
-    data = "jsdelivr.yml"
+    data = "unpkg.yml"
 
   # 兼容性设置
   [params.compatibility]

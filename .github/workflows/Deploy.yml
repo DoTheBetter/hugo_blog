@@ -1,9 +1,11 @@
-name: Hugo build and deploy 
+name: Hugo build and deploy
 
 on:
   push:
     branches:
       - master
+    paths-ignore:
+      - 'sendurl/**'
   workflow_run:
     workflows: ['Update theme']
     types:
@@ -29,19 +31,19 @@ jobs:
       - name: Build Hugo static files
         run: hugo --gc --minify --logLevel info
 
-#      - name: Deploy to Github Pages
-#        uses: JamesIves/github-pages-deploy-action@v4
-#        with:
-#          # See https://github.com/JamesIves/github-pages-deploy-action#configuration-
-#          branch: gh-pages
-#          folder: public
-#          clean: true
-#          single-commit: true
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          #https://github.com/JamesIves/github-pages-deploy-action#configuration-
+          branch: blog
+          folder: public
+          clean: true
+          single-commit: true
 
-      - name: rsync deployments
+      - name: Rsync deployments
         uses: Burnett01/rsync-deployments@7.0.1
         with:
-        #https://github.com/marketplace/actions/rsync-deployments-action
+          #https://github.com/marketplace/actions/rsync-deployments-action
           switches: -avzr --delete
           path: public/
           remote_path: /www/
@@ -49,3 +51,24 @@ jobs:
           remote_port: ${{ secrets.REMOTE_PORT }}
           remote_user: ${{ secrets.REMOTE_USER }}
           remote_key: ${{ secrets.REMOTE_KEY }}
+
+      - name: Run shell script
+        run: |
+          ./sendurl/sendurl_baidu.sh
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add sendurl/
+          git commit -m "sendurl changes"
+          git push
+        env:
+          baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
+
+      - name: indexnow-action
+        uses: bojieyang/indexnow-action@v2
+        with:
+          # https://github.com/bojieyang/indexnow-action
+          sitemap-location: "https://www.5dzone.com/sitemap.xml"
+          since: 1
+          since-unit: "week"
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: https://www.5dzone.com/${{ secrets.INDEXNOW_KEY }}.txt
