@@ -54,6 +54,7 @@ jobs:
 
       - name: Run shell script
         run: |
+          chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
