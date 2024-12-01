@@ -71,5 +71,6 @@ jobs:
           sitemap-location: "https://www.5dzone.com/sitemap.xml"
           since: 1
           since-unit: "week"
+          endpoint: "www.bing.com"
           key: ${{ secrets.INDEXNOW_KEY }}
-          key-location: https://www.5dzone.com/${{ secrets.INDEXNOW_KEY }}.txt
+          key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
