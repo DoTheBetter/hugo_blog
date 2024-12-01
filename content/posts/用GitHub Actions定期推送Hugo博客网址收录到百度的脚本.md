@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-01T20:36:10+08:00
+lastmod: 2024-12-01T20:53:38+08:00
 tags:
   - Hugo
   - GitHubActions
@@ -17,9 +17,8 @@ blog: "true"
 dir: posts
 ---
 
-‌‌‌‌　　之前使用 WordPress 时，主题自带了自动推送文章到百度的功能。不过现在我改用了静态博客 Hugo，无法直接通过修改主题实现同样的效果。好在百度提供了基于 `curl` 的推送 API 示例，我们可以在生成 Hugo 博客后，利用 `curl` 指令来手动推送文章链接。
-
-‌‌‌‌　　我参考了一位博主 [^1] 的代码，并进行了一些修改和优化。具体来说，新增了判断条件并去掉了通知功能。实现的基本原理是：Hugo 博客会将所有网页地址生成到 `sitemap.xml` 文件中，脚本从中取出未被成功收录的前 10 个网址，然后通过百度 API 进行推送。
+‌‌‌‌之前使用 WordPress 时，主题自带了自动推送文章到百度的功能。不过现在我改用了静态博客 Hugo，无法直接通过修改主题实现同样的效果。好在百度提供了基于 curl 的推送 API 示例，我们可以在生成 Hugo 博客后，利用 curl 指令来手动推送文章链接。  
+‌‌‌‌我参考了一位博主 [^1] 的代码，并进行了一些修改和优化。具体来说，新增了判断条件并去掉了通知功能。实现的基本原理是：Hugo 博客会将所有网页地址生成到 sitemap.xml 文件中，脚本从中取出未被成功收录的前 10 个网址，然后通过百度 API 进行推送。
 
 ## 1. sendurl_baidu.sh 脚本
 
@@ -60,7 +59,7 @@ fi
 
 ## 2. workflows 脚本
 
-1. 上面的脚本中有一个 `$baidu_apiurl` 变量，需要在运行 workflows 脚本里引入。从<https://ziyuan.baidu.com/site/index>获取接口调用地址（需要登录百度帐号），格式为 `http://data.zz.baidu.com/urls?_site_=网站地址&_token_=准入密钥`，填入 Github 仓库的机密变量中，变量名为 `BAIDU_APIURL`。
+1. 上面的脚本中有一个 `$baidu_apiurl` 变量，需要在运行 workflows 脚本里引入。从<https://ziyuan.baidu.com/site/index>获取接口调用地址（需要登录百度帐号），格式为 `http://data.zz.baidu.com/urls?_site_=网站地址&_token_=准入密钥`，填入 Github 仓库的机密变量中，变量名为 `BAIDU_APIURL`。  
 ![](attachments/19667991d001d29c3cc7c2d57f21aa15_MD5.png)
 2. 因为需要 `baidu_success.txt` 文件内容对比，所以每次运行后都要用 `git push` 保存成功的链接，以便下次不再推送。
 3. 将代码放在 Hugo 生成静态网站之后：
