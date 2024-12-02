@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址到IndexNow（Bing、Yandex）的脚本
 date: 2024-12-02T10:30:59+08:00
-lastmod: 2024-12-02T20:11:59+08:00
+lastmod: 2024-12-02T20:16:03+08:00
 tags:
   - GitHubActions
   - Hugo
@@ -34,7 +34,7 @@ dir: posts
 ‌‌‌‌　　下面是我的一个具体例子：只需在你的 GitHub 仓库中添加一个名为 `INDEXNOW_KEY` 的机密变量，并将其值设置为 " 您的 API 密钥 "。这样，你就可以省去后面第 2 和第 3 步的操作。
 
 具体操作步骤如下：
-1. **生成 API 密钥**：访问 Bing IndexNow 页面 [^2] 并生成你的 API 密钥
+1. **生成 API 密钥**：访问 Bing IndexNow 页面并生成你的 API 密钥
 2. **在 GitHub 仓库中设置机密变量**：`INDEXNOW_KEY`
 3. **编写 workflows 脚本**，将代码放在 Hugo 生成静态网站之后
 ```yml
