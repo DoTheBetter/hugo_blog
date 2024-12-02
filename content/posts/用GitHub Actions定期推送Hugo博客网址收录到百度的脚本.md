@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-01T20:58:28+08:00
+lastmod: 2024-12-02T15:26:42+08:00
 tags:
   - Hugo
   - GitHubActions
@@ -64,7 +64,11 @@ fi
 2. 因为需要 `baidu_success.txt` 文件内容对比，所以每次运行后都要用 `git push` 保存成功的链接，以便下次不再推送。
 3. 将代码放在 Hugo 生成静态网站之后：
 ```shell
-- name: Run shell script
+### … 省略其他步骤
+      - name: Build Hugo static files
+        run: hugo --gc --minify --logLevel info
+
+      - name: baidu-action
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
@@ -79,6 +83,16 @@ fi
           fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
+### … 省略其他步骤
+```
+4. 如果在 workflows 脚本中开启了 push 后自动构建，则还需要排除 sendurl 目录。
+```shell
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'sendurl/**'
 ```
 
 ## 3. 可能的改进
