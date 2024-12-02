@@ -1,11 +1,11 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-02T15:26:42+08:00
+lastmod: 2024-12-02T19:55:46+08:00
 tags:
   - Hugo
   - GitHubActions
-  - 百度搜索网址收录
+  - 百度
 description: 本文介绍了如何使用GitHub Actions和Hugo生成静态网站后，通过脚本定期将未被百度收录的网页地址推送至百度。
 categories:
   - 博客
@@ -18,7 +18,7 @@ dir: posts
 ---
 
 ‌‌‌‌　　之前使用 WordPress 时，主题自带了自动推送文章到百度的功能。不过现在我改用了静态博客 Hugo，无法直接通过修改主题实现同样的效果。好在百度提供了基于 curl 的推送 API 示例，我们可以在生成 Hugo 博客后，利用 curl 指令来手动推送文章链接。  
-‌‌‌‌　　我参考了一位博主 [^1] 的代码，并进行了一些修改和优化。具体来说，新增了判断条件并去掉了通知功能。实现的基本原理是：Hugo 博客会将所有网页地址生成到 sitemap.xml 文件中，脚本从中取出未被成功收录的前 10 个网址，然后通过百度 API 进行推送。
+‌‌‌‌　　我参考了一位博主 [^1] 的代码，并进行了一些修改和优化。具体来说，新增了判断条件并去掉了通知功能。实现的基本原理是：Hugo 博客会将所有网页地址生成到 sitemap. xml 文件中，脚本从中取出未被成功推送的前 10 个网址，然后通过百度 API 进行推送。
 
 ## 1. sendurl_baidu.sh 脚本
 
@@ -63,8 +63,9 @@ fi
 ![](attachments/19667991d001d29c3cc7c2d57f21aa15_MD5.png)
 2. 因为需要 `baidu_success.txt` 文件内容对比，所以每次运行后都要用 `git push` 保存成功的链接，以便下次不再推送。
 3. 将代码放在 Hugo 生成静态网站之后：
-```shell
-### … 省略其他步骤
+```yml
+      ### … 省略其他步骤
+      
       - name: Build Hugo static files
         run: hugo --gc --minify --logLevel info
 
@@ -83,7 +84,8 @@ fi
           fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
-### … 省略其他步骤
+     
+     ### … 省略其他步骤
 ```
 4. 如果在 workflows 脚本中开启了 push 后自动构建，则还需要排除 sendurl 目录。
 ```shell
