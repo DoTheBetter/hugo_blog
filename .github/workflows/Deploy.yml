@@ -31,27 +31,6 @@ jobs:
       - name: Build Hugo static files
         run: hugo --gc --minify --logLevel info
 
-      - name: Deploy to Github Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          #https://github.com/JamesIves/github-pages-deploy-action#configuration-
-          branch: blog
-          folder: public
-          clean: true
-          single-commit: true
-
-      - name: Rsync deployments
-        uses: Burnett01/rsync-deployments@7.0.1
-        with:
-          #https://github.com/marketplace/actions/rsync-deployments-action
-          switches: -avzr --delete
-          path: public/
-          remote_path: /www/
-          remote_host: ${{ secrets.REMOTE_HOST }}
-          remote_port: ${{ secrets.REMOTE_PORT }}
-          remote_user: ${{ secrets.REMOTE_USER }}
-          remote_key: ${{ secrets.REMOTE_KEY }}
-
       - name: baidu-action
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
@@ -68,6 +47,10 @@ jobs:
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
 
+      - name: Setup IndexNow 
+        # 动态生成KEY文件以防止它们在公共存储库中泄露。
+        run: echo ${{ secrets.INDEXNOW_KEY }} > public/${{ secrets.INDEXNOW_KEY }}.txt
+
       - name: indexnow-action
         uses: bojieyang/indexnow-action@v2
         with:
@@ -77,4 +60,26 @@ jobs:
           since-unit: "week"
           endpoint: "www.bing.com"
           key: ${{ secrets.INDEXNOW_KEY }}
-          key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
+          #key-location: ${{ secrets.INDEXNOW_KEY_LOCATION }}
+          key-location: https://www.5dzone.com/${{ secrets.INDEXNOW_KEY }}.txt
+
+#      - name: Deploy to Github Pages
+#        uses: JamesIves/github-pages-deploy-action@v4
+#        with:
+#          #https://github.com/JamesIves/github-pages-deploy-action#configuration-
+#          branch: blog
+#          folder: public
+#          clean: true
+#          single-commit: true
+
+      - name: Rsync deployments
+        uses: Burnett01/rsync-deployments@7.0.1
+        with:
+          #https://github.com/marketplace/actions/rsync-deployments-action
+          switches: -avzr --delete
+          path: public/
+          remote_path: /www/
+          remote_host: ${{ secrets.REMOTE_HOST }}
+          remote_port: ${{ secrets.REMOTE_PORT }}
+          remote_user: ${{ secrets.REMOTE_USER }}
+          remote_key: ${{ secrets.REMOTE_KEY }}
