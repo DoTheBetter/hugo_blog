@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-02T20:24:06+08:00
+lastmod: 2024-12-02T20:31:00+08:00
 tags:
   - Hugo
   - GitHubActions
@@ -88,7 +88,7 @@ fi
      ### … 省略其他步骤
 ```
 4. 如果在 workflows 脚本中开启了 push 后自动构建，则还需要排除 sendurl 目录。
-```shell
+```yml
 on:
   push:
     branches:
