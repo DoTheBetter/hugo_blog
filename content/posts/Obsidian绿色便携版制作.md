@@ -1,8 +1,8 @@
 ---
 title: Obsidian绿色便携版制作
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-28T12:26:06+08:00
-description: 本文介绍了两种方法用于创建 Obsidian 的官方绿色便携安装包，一种是通过修改官方安装包及创建启动脚本，另一种是使用第三方工具实现便携。
+lastmod: 2024-12-05T20:01:54+08:00
+description: 本文介绍了两种方法用于创建 Obsidian 的官方绿色便携安装包。一种是通过修改官方安装包及创建启动脚本，另一种是使用第三方工具实现便携。这两种方法都适用于希望在不同设备上轻松携带和使用的用户。
 tags:
   - 软件
   - Obsidian
@@ -53,5 +53,3 @@ start /min "" "app\Obsidian.exe" "--user-data-dir=.\-obsidian-"
 ## 2. 第三方便携安装程序
 
 1. [https://github.com/Numstr/Obsidian-Portable](https://github.com/Numstr/Obsidian-Portable)
-
-‌‌
