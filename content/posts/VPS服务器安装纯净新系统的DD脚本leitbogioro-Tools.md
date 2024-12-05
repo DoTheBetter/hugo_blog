@@ -1,7 +1,7 @@
 ---
 title: VPS服务器安装纯净新系统的DD脚本leitbogioro-Tools
 date: 2024-11-19T10:17:36+08:00
-lastmod: 2024-11-28T12:33:10+08:00
+lastmod: 2024-12-05T19:55:42+08:00
 tags:
   - VPS
   - 脚本
@@ -19,8 +19,7 @@ blog: "true"
 dir: posts
 ---
 
-基本上所有的主机提供商都会提供免费的 Linux 系统以供安装使用，如 CentOS、Debian、Ubuntu 等。那为什么我们还要使用一键 DD 脚本重装/更换系统呢？
-
+‌‌‌‌　　基本上所有的主机提供商都会提供免费的 Linux 系统以供安装使用，如 CentOS、Debian、Ubuntu 等。那为什么我们还要使用一键 DD 脚本重装/更换系统呢？
 1. 商家提供的系统版本有限，可能没有自己需要的版本；
 2. Windows 系统通过正规渠道安装需要收费
 3. 商家提供的系统大多都是改装过的，不纯净，可能存在软件兼容行问题；
@@ -28,11 +27,10 @@ dir: posts
 
 ## 1. DD 脚本的选择
 
-网络上的 dd 脚本很多，对 vps 的支持可能不一样，这个脚本不行就换个脚本。我用的脚本是 "leitbogioro"/" 天权璇玑 " 大佬的脚本，这个脚本对 debian 支持很好。
-
-脚本地址：
-[https://github.com/leitbogioro/Tools](https://github.com/leitbogioro/Tools "https://github.com/leitbogioro/Tools")
-[https://www.nodeseek.com/post-9383-1](https://www.nodeseek.com/post-9383-1 "https://www.nodeseek.com/post-9383-1")
+‌‌‌‌　　网络上的 dd 脚本很多，对 vps 的支持可能不一样，这个脚本不行就换个脚本。我用的脚本是 "leitbogioro"/" 天权璇玑 " 大佬的脚本，这个脚本对 debian 支持很好。  
+脚本地址：  
+[https://github.com/leitbogioro/Tools](https://github.com/leitbogioro/Tools "https://github.com/leitbogioro/Tools")  
+[https://www.nodeseek.com/post-9383-1](https://www.nodeseek.com/post-9383-1 "https://www.nodeseek.com/post-9383-1")  
 [https://hostloc.com/thread-1159839-1-1.html](https://hostloc.com/thread-1159839-1-1.html "https://hostloc.com/thread-1159839-1-1.html")
 
 ## 2. 脚本用法
@@ -49,7 +47,7 @@ cd ~
 ```
 然后继续下载并执行这个脚本。
 
-+ 依赖项和操作系统支持以下列表，以安装到脚本支持的操作系统：
++ 依赖项和操作系统支持以下列表，以安装到脚本支持的操作系统：  
 Debian 系列 (Debian / Ubuntu / Kali):
 ```shell
 apt update -y
@@ -210,4 +208,4 @@ Linux：与原先系统一样，以终端方式登录，
 
 **若没有指定其他 ssh 密码或端口，系统安装完成后，必须立即修改默认密码或改用 ssh key 登录，防止非法访问！**
 
-Windows：3389
+Windows：3389  
