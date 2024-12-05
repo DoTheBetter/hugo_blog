@@ -1,7 +1,7 @@
 ---
 title: 在Windows环境下使用Ollama搭建本地AI模型
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-12-05T12:22:49+08:00
+lastmod: 2024-12-05T20:08:44+08:00
 description: 本文介绍了怎么样在 Windows 环境下使用Ollama 搭建本地 AI 模型、使用方法及配套UI软件。
 tags:
   - Windows
