@@ -1,8 +1,8 @@
 ---
 title: GitExtensions官方便携版带配置更新
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-28T12:25:48+08:00
-description: GitExtensions 是一款强大的开源 Git GUI 客户端，方便开发人员管理 Git 版本控制系统。其官方提供的便携版 GitExtensions-Portable 可与 PortableGit 和 PuTTY 一起使用。
+lastmod: 2024-12-05T20:02:31+08:00
+description: 文章介绍了 GitExtensions 的官方便携版本及其使用方法。该工具是一款强大的开源 Git 图形用户界面客户端，方便开发人员管理 Git 版本控制系统。文章还详细说明了如何在更新 GitExtensions 便携版时转移配置文件，确保用户的个性化设置不会丢失。
 tags:
   - Git工具
   - GitExtensions
