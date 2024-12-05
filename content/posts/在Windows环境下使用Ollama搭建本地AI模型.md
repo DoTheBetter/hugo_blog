@@ -1,7 +1,7 @@
 ---
 title: 在Windows环境下使用Ollama搭建本地AI模型
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-28T12:27:51+08:00
+lastmod: 2024-12-05T12:22:49+08:00
 description: 本文介绍了怎么样在 Windows 环境下使用Ollama 搭建本地 AI 模型、使用方法及配套UI软件。
 tags:
   - Windows
@@ -64,7 +64,7 @@ Ollama 有几个常用的系统环境变量参数需要设置。设置环境变�
 
 ### 4.3. 管理本地已有大模型
 
-> [!注意]
+> [!注意]  
 > 你需要至少有 8GB 的内存来运行 7B 模型，16GB 来运行 13B 模型，以及 32GB 来运行 33B 模型。
 
 1. 展示本地模型列表：可以使用 `ollama list` 命令查看本地已有的大模型。
@@ -93,12 +93,27 @@ ollama pull qwen2:0.5b
 ollama pull qwen2
 ```
 
-#### 4.4.2. 通过 GGUF 模型权重文件导入
+#### 4.4.2. 通过 GGUF 模型权重文件运行
 
-1. 将 GGUF 格式的模型文件放置在指定路径。
-2. 使用 `ollama import` 命令导入模型。例如：
+新版 ollama 已支持 GGUF 模型的直接下载与运行，不需再进行导入。  
+运行格式为 `ollama run hf.co/{username}/{repository}:{quantization}` 。  
+默认情况下，使用 `Q4_K_M` 量化方案。如果不存在，默认选择存储库中存在的合理量化类型。  
+
+1. Huggingface
 ```PowerShell
-ollama import path/to/your/gguf/model.bin qwen2:0.5b
+#不使用标签或用latest标签，默认下载为q4_k_m
+ollama run hf.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF
+ollama run hf.co/Qwen/Qwen2.5-1.5B-Instruct-GGUF:latest
+#指定下载标签q5_k_m
+ollama run huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF:q5_k_m
+```
+2. 国内 Huggingface 镜像
+```PowerShell
+ollama run hf-mirror.com/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF:q5_k_m
+```
+3. 国内魔搭社区
+```PowerShell
+ollama run modelscope.cn/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF:q5_k_m
 ```
 
 #### 4.4.3. 通过 safetensors 模型权重文件导入
