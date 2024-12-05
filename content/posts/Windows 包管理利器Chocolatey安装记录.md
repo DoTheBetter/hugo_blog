@@ -1,8 +1,8 @@
 ---
 title: Windows 包管理利器Chocolatey安装记录
 date: 2024-11-13T22:26:30+08:00
-lastmod: 2024-11-28T12:28:16+08:00
-description: 本文介绍了 Chocolatey，一款类似于 Linux 的包管理工具，旨在简化 Windows 上的软件安装、更新和卸载流程。文章概述了Chocolatey的优势，包括解决软件依赖问题以及丰富的软件包资源库。还详细说明了通过 PowerShell 安装 Chocolatey 的步骤，包括环境变量的设置和基本的命令示例，如查看版本、搜索、安装、升级和卸载软件包。
+lastmod: 2024-12-05T20:03:11+08:00
+description: 本文介绍了 Chocolatey，一个类似于 Linux 包管理工具 apt-get 和 yum 的 Windows 平台包管理器。它能够简化软件安装、更新和卸载流程，并且具有丰富的软件资源库来解决依赖问题。文章详细描述了通过 PowerShell 安装 Chocolatey 的步骤及基本命令的使用方法，包括查看版本、搜索、安装、升级和卸载软件等操作。
 tags:
   - Chocolatey
   - Windows
@@ -35,7 +35,7 @@ Chocolatey 的优势主要体现在以下几个方面。
 
 ### 2.2. 通过 PowerShell 安装
 
-1.首先，使用管理员模式运行 powershell
+1.首先，使用管理员模式运行 powershell  
 2.按照官方说明>，可设置环境变量更改默认软件安装位置
 > [!NOTE] Title
 > ### Installation

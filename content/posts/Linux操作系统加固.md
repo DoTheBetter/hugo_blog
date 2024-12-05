@@ -1,14 +1,14 @@
 ---
 title: Linux操作系统加固
 date: 2024-11-26T12:07:17+08:00
-lastmod: 2024-11-28T12:29:51+08:00
+lastmod: 2024-12-05T19:51:28+08:00
 tags:
   - Linux
   - 系统加固
   - VPS
   - 服务器安全
   - 阿里云
-description: 本文详细介绍了如何通过账号管理和服务配置等措施来加固Linux操作系统，提高系统的安全性。
+description: 文章详细介绍了如何通过账号管理和服务配置等措施来加固Linux操作系统，提高系统的安全性。主要内容包括禁用或删除无用账号、检查特殊账号、添加口令策略、限制用户 su 权限、禁止 root 用户直接登录、关闭不必要的服务、SSH 服务安全设置、设置 umask 值、设置登录超时时间以及启用日志功能等。
 categories:
   - VPS
   - 服务器
@@ -58,7 +58,7 @@ dir: posts
     + `PASS_MIN_DAYS 0 #新建用户的密码最短使用天数`
     + `PASS_WARN_AGE 7 #新建用户的密码到期提前提醒天数`
 
-2. 使用 chage 命令修改用户设置。
+2. 使用 chage 命令修改用户设置。  
     例如，`chage -m 0 -M 30 -E 2000-01-01 -W 7 <用户名>` 表示将此用户的密码最长使用天数设为 30，最短使用天数设为 0，密码 2000 年 1 月 1 日过期，过期前七天警告用户。
 
 3. 设置连续输错三次密码，账号锁定五分钟。使用命令 `vi /etc/pam.d/common-auth` 修改配置文件，在配置文件中添加 `auth required pam_tally.so onerr=fail deny=3 unlock_time=300`。
@@ -99,13 +99,13 @@ dir: posts
 
 使用命令 `vim /etc/ssh/sshd_config` 编辑配置文件。
 
-+ 不允许 root 账号直接登录系统。
++ 不允许 root 账号直接登录系统。  
     设置 PermitRootLogin 的值为 no。
 
-+ 修改 SSH 使用的协议版本。
++ 修改 SSH 使用的协议版本。  
     设置 Protocol 的版本为 2。
 
-+ 修改允许密码错误次数（默认 6 次）。
++ 修改允许密码错误次数（默认 6 次）。  
     设置 MaxAuthTries 的值为 3。
 
 配置文件修改完成后，重启 sshd 服务生效。

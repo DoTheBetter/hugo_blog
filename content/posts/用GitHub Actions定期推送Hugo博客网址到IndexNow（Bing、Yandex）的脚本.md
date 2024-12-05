@@ -1,14 +1,14 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址到IndexNow（Bing、Yandex）的脚本
 date: 2024-12-02T10:30:59+08:00
-lastmod: 2024-12-02T20:25:37+08:00
+lastmod: 2024-12-05T19:48:59+08:00
 tags:
   - GitHubActions
   - Hugo
   - IndexNow
   - Bing
   - Yandex
-description: 本文介绍了如何使用GitHub Actions定期推送Hugo博客网址到IndexNow，从而通知Bing和Yandex搜索引擎更新内容。
+description: 本文介绍了如何使用 GitHub Actions 定期推送 Hugo 博客网址到 IndexNow，进而通知 Bing 和 Yandex 搜索引擎更新内容。通过生成 API 密钥、设置机密变量和编写 workflows 脚本，可以自动将网站地址提交给搜索引擎，提高搜索结果的及时性。
 categories:
   - 博客
 collections:
@@ -50,7 +50,7 @@ dir: posts
      # https://github.com/bojieyang/indexnow-action
      sitemap-location: "https://your-website.com/sitemap.xml"
      since: 1
-     since-unit: "week"
+     since-unit: "day"
      endpoint: "www.bing.com"
      key: ${{ secrets.INDEXNOW_KEY }}
      key-location: https://your-website.com/${{ secrets.INDEXNOW_KEY }}.txt

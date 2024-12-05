@@ -1,12 +1,12 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-02T20:31:00+08:00
+lastmod: 2024-12-05T19:49:58+08:00
 tags:
   - Hugo
   - GitHubActions
   - 百度
-description: 本文介绍了如何使用GitHub Actions和Hugo生成静态网站后，通过脚本定期将未被百度收录的网页地址推送至百度。
+description: 本文介绍了如何使用GitHub Actions和Hugo生成静态网站后，通过脚本定期将未被百度收录的网页地址推送至百度。文章详细描述了脚本的具体实现方法，并提供了相关配置步骤。
 categories:
   - 博客
 collections:
