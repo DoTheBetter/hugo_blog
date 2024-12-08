@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-05T19:49:58+08:00
+lastmod: 2024-12-08T19:58:06+08:00
 tags:
   - Hugo
   - GitHubActions
