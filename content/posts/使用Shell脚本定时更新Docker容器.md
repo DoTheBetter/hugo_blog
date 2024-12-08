@@ -1,12 +1,12 @@
 ---
 title: 使用Shell脚本定时更新Docker容器
 date: 2024-12-05T16:38:32+08:00
-lastmod: 2024-12-05T19:50:51+08:00
+lastmod: 2024-12-08T09:59:28+08:00
 tags:
   - docker
   - VPS
   - 脚本
-description: 文章介绍了如何使用Shell脚本来定时检查并自动更新Docker容器，避免了在国内网络环境下使用watchtower服务遇到的技术障碍。该脚本能够扫描指定文件夹内的.yml文件，并通过docker-compose pull和docker-compose up命令来实现自动化更新及通知功能。
+description: 文章介绍了如何使用Shell脚本来定时检查并自动更新Docker容器，避免了在国内网络环境下使用watchtower服务遇到的技术障碍。该脚本能够扫描指定文件夹内的.yml文件，并通过docker-compose pull和docker-compose up命令来实现自动化更新、删除旧容器及相应的卷和通知功能。
 categories:
   - VPS
   - 服务器
@@ -22,12 +22,12 @@ dir: posts
 
 ## 1. 功能概述
 
-‌‌‌‌　　该脚本主要负责扫描指定文件夹内的所有 `.yml` 文件，并用 `docker-compose pull` 来查找并获取可能存在的镜像更新；如果发现新版本的容器镜像时，则继续使用 `docker-compose up` 命令来升级现有的容器，同时发送通知告知用户更新的结果。除此之外，还能通过设定定时任务让整个过程自动化运行。
+‌‌‌‌　　该脚本主要作用是扫描指定文件夹内的所有 `.yml` 文件，并用 `docker-compose pull` 来查找并获取可能存在的镜像更新；如果发现新版本的容器镜像时，则继续使用 `docker-compose up` 命令来升级现有的容器，删除旧容器及相应的卷，同时发送通知告知用户更新的结果。除此之外，还能通过设定定时任务让整个过程自动化运行。
 
 ## 2. 技术细节
 
 ‌‌‌‌　　这个脚本的核心逻辑是根据 `docker-compose pull` 和 `docker-compose up` 这两个命令的输出日志是否包含特定字符串进行判断，以确定是否进行必要的容器更新操作。  
-‌‌‌‌　　另一种可能的方式来实现镜像自动更新是直接对比镜像本地和远程仓库的哈希值，如果发现两者不匹配就拉取最新的版本。然而这种方法在实施过程中显得相对复杂一些，因此没有采用这种方式。
+‌‌‌‌　　另一种可能的方式来是直接对比镜像本地和远程仓库的哈希值，如果发现两者不匹配就拉取最新的版本。然而这种方法在实施过程中显得相对复杂一些，因此没有采用这种方式。
 
 ## 3. 完整脚本  
 
@@ -35,8 +35,8 @@ dir: posts
 ```shell
 /root
    ├── docker
-   │   ├── …
-   │   └── …
+   │   ├── docker容器1
+   │   └── docker容器n
    ├── docker-manage.yml
    ├── docker-test.yml
    ├── docker-tools.yml
@@ -83,8 +83,12 @@ for YML_FILE in "$TARGET_DIR"/*.yml; do
        docker-compose -f "$YML_FILE" -p $PROJECT_NAME up -d >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
        # 判断容器更新是否成功，并发送通知
        if grep -q "Started" $TARGET_DIR/update_$PROJECT_NAME.log; then
-           echo "$YML_FILE 中容器更新成功"
-           send_message "[${PREFIX}] Docker 容器升级完成" "yml 文件：$YML_FILE" "$(cat $TARGET_DIR/update_$PROJECT_NAME.log)"
+          echo "$YML_FILE 中容器更新成功"
+          # 清理容器
+          echo "-------清理未使用的镜像及卷-----------" >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
+          docker image prune -f >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
+          docker volume prune -f >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
+          send_message "[${PREFIX}] Docker 容器升级完成" "yml 文件：$YML_FILE" "$(cat $TARGET_DIR/update_$PROJECT_NAME.log)"
        else
            echo "$YML_FILE 中容器更新失败"
            send_message "[${PREFIX}] Docker 容器升级失败" "yml 文件：$YML_FILE" "$(cat $TARGET_DIR/update_$PROJECT_NAME.log)"
