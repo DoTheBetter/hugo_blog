@@ -57,8 +57,6 @@ jobs:
              git add sendurl/
              git commit -m "sendurl changes"
              git push --set-upstream origin master
-          else
-             echo "百度搜索网址提交失败，退出"
           fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
