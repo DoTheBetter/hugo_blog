@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-08T19:58:06+08:00
+lastmod: 2024-12-11T08:36:03+08:00
 tags:
   - Hugo
   - GitHubActions
@@ -65,26 +65,22 @@ fi
 3. 将代码放在 Hugo 生成静态网站之后：
 ```yml
       ### … 省略其他步骤
-      
       - name: Build Hugo static files
         run: hugo --gc --minify --logLevel info
 
-      - name: baidu-action
+      - name: Baidu-action
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
-          if grep -q "success" ./sendurl/baidu_result.txt; then
+          if [ -s "$(grep -v -F -x -f ./sendurl/baidu_success.txt ./sendurl/allurl.txt)" ] && grep -q "success" ./sendurl/baidu_result.txt; then
              git config --global user.name 'github-actions[bot]'
              git config --global user.email 'github-actions[bot]@users.noreply.github.com'
              git add sendurl/
              git commit -m "sendurl changes"
              git push --set-upstream origin master
-          else
-             echo "百度搜索网址提交失败，退出"
           fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
-     
      ### … 省略其他步骤
 ```
 4. 如果在 workflows 脚本中开启了 push 后自动构建，则还需要排除 sendurl 目录。
