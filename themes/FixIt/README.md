@@ -1,20 +1,30 @@
 <!-- markdownlint-disable-file MD033 MD041 -->
 ![Hugo Theme FixIt](https://fixit.lruihao.cn/images/apple-devices-preview.png)
 
-<div align="center">English | <a href="/README.zh-cn.md">简体中文</a></div>
+<div align="center" class="ignore">
+  <p>FixIt is a clean, elegant but advanced blog theme for <a href="https://gohugo.io/">Hugo</a>.</p>
+  English |
+  <a href="/README.zh-cn.md">简体中文</a> |
+  <a href="https://fixit.lruihao.cn/zh-cn/ecosystem/hugo-fixit/fixit/?lang=chinese_traditional">繁體中文</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=french">Français</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=russian">Русский язык</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=spanish">Español</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=hindi">हिन्दी</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=german">deutsch</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=korean">한국어</a> |
+  <a href="https://fixit.lruihao.cn/ecosystem/hugo-fixit/fixit/?lang=japanese">しろうと</a>
+</div>
 
 <a title="FixIt website" href="https://fixit.lruihao.cn"><img align="right" alt="FixIt logo" width="70" height="70" src="https://avatars.githubusercontent.com/u/110414864?s=200&v=4"></a>
 
 # FixIt
 
+> It is based on the original [LoveIt](https://github.com/dillonzq/LoveIt) Theme, [KeepIt](https://github.com/Fastbyte01/KeepIt) Theme and [LeaveIt](https://github.com/liuzc/LeaveIt) Theme.
+
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/hugo-fixit/FixIt?style=flat)](https://github.com/hugo-fixit/FixIt/releases)
 [![Hugo](https://img.shields.io/badge/Hugo-%5E0.134.1-ff4088?style=flat&logo=hugo)](https://gohugo.io/)
 [![License](https://img.shields.io/github/license/hugo-fixit/FixIt?style=flat)](/LICENSE)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/hugo-fixit/FixIt)
-
-> «FixIt» is a **clean**, **elegant** but **advanced** blog theme for [Hugo](https://gohugo.io/).
-
-It is based on the original [LoveIt](https://github.com/dillonzq/LoveIt) Theme, [KeepIt](https://github.com/Fastbyte01/KeepIt) Theme and [LeaveIt](https://github.com/liuzc/LeaveIt) Theme.
 
 ## Live Preview
 
@@ -22,7 +32,7 @@ It is based on the original [LoveIt](https://github.com/dillonzq/LoveIt) Theme, 
   💟 <a href="https://fixit.lruihao.cn">Production</a> | ❇️ <a href="https://pre.fixit.lruihao.cn">Preview</a> | 🚼 <a href="https://demo.fixit.lruihao.cn">Demo</a> | 🆕 <a href="https://hugo-fixit.github.io/hugo-fixit-starter/">Starter</a>
 <br>
 <br>
-  More «FixIt» examples <a href="https://fixit.lruihao.cn/showcase/">here</a>.
+  More FixIt examples <a href="https://fixit.lruihao.cn/showcase/">here</a>.
 </p>
 
 ## Documentation
@@ -136,7 +146,14 @@ I don't know why 🤷
 
 ### Theme Components
 
-The FixIt theme balances **simplicity** and **extensibility** with extra [Hugo theme components](https://fixit.lruihao.cn/components/) for customization.
+The FixIt theme balances **simplicity** and **extensibility** with extra [Hugo theme components](https://fixit.lruihao.cn/ecosystem/#-components) for customization.
+
+- GitHub projects card supported by [component-projects](https://github.com/hugo-fixit/component-projects)
+- Automatic Translation supported by [cmpt-translate](https://github.com/hugo-fixit/cmpt-translate)
+- JSON feed supported by [hugo-json-feed](https://github.com/hugo-fixit/hugo-json-feed)
+- `reward-log` shortcode supported by [shortcode-reward](https://github.com/hugo-fixit/shortcode-rewards)
+- `caniuse` shortcode supported by [shortcode-caniuse](https://github.com/hugo-fixit/shortcode-caniuse)
+- ...
 
 ## Multilingual and i18n
 
@@ -252,6 +269,10 @@ If you enjoy the theme, please consider buying me a coffee ☕️. Thanks!
 - [Wechat](/images/wechatpay.jpg)
 - [Alipay](/images/alipay.jpg)
 - [PayPal](https://paypal.me/Lruihao)
+
+Thanks to the following sponsors for their support:
+
+- [translate.js](https://github.com/xnx3/translate) Sponsoring [Enterprise Translation Channel](https://translate.zvo.cn/4087.html).
 
 ## Author
 
