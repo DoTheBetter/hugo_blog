@@ -1,7 +1,7 @@
 ---
 title: 使用Shell脚本定时更新Docker容器
 date: 2024-12-05T16:38:32+08:00
-lastmod: 2024-12-08T09:59:28+08:00
+lastmod: 2024-12-20T09:14:27+08:00
 tags:
   - docker
   - VPS
@@ -47,11 +47,15 @@ dir: posts
 ```shell
 #!/bin/bash
 
+# 添加环境变量
+PATH="$PATH:/usr/local/bin"
+export PATH
+
 # 定义要遍历的目录
 TARGET_DIR="/root"
 
 # 计划任务执行时间
-TASK_TIME="0 */6 * * *"
+TASK_TIME="0 5 * * *"
 
 # 通知设置
 PREFIX="消息标题前缀"
@@ -79,16 +83,16 @@ for YML_FILE in "$TARGET_DIR"/*.yml; do
     if grep -q "Pull complete" $TARGET_DIR/update_$PROJECT_NAME.log; then
        echo "$YML_FILE 中镜像更新已下载成功"
        # 更新容器
-       echo "-------分隔符-----------" >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
+       echo "-------升级容器-----------" >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
        docker-compose -f "$YML_FILE" -p $PROJECT_NAME up -d >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
        # 判断容器更新是否成功，并发送通知
        if grep -q "Started" $TARGET_DIR/update_$PROJECT_NAME.log; then
-          echo "$YML_FILE 中容器更新成功"
+           echo "$YML_FILE 中容器更新成功"
           # 清理容器
           echo "-------清理未使用的镜像及卷-----------" >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
           docker image prune -f >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
           docker volume prune -f >> $TARGET_DIR/update_$PROJECT_NAME.log 2>&1
-          send_message "[${PREFIX}] Docker 容器升级完成" "yml 文件：$YML_FILE" "$(cat $TARGET_DIR/update_$PROJECT_NAME.log)"
+           send_message "[${PREFIX}] Docker 容器升级完成" "yml 文件：$YML_FILE" "$(cat $TARGET_DIR/update_$PROJECT_NAME.log)"
        else
            echo "$YML_FILE 中容器更新失败"
            send_message "[${PREFIX}] Docker 容器升级失败" "yml 文件：$YML_FILE" "$(cat $TARGET_DIR/update_$PROJECT_NAME.log)"
