@@ -52,15 +52,14 @@ jobs:
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
-          if [ -s "./sendurl/baidu_sendurl.txt" ]; then
-             echo "文件 ./sendurl/baidu_sendurl.txt 不为空，进行git提交。"
+          if [ -n "$(grep -v -F -x -f baidu_success.txt allurl.txt)" ]; then
              git config --global user.name 'github-actions[bot]'
              git config --global user.email 'github-actions[bot]@users.noreply.github.com'
              git add sendurl/
              git commit -m "sendurl changes"
              git push --set-upstream origin master
           else
-             echo "文件 ./sendurl/baidu_sendurl.txt 为空，退出git提交。"
+             echo "文件baidu_success.txt allurl.txt无差异，退出git提交。"
           fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
