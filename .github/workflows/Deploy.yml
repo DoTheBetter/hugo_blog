@@ -52,7 +52,7 @@ jobs:
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
-          if [ -n "$(grep -v -F -x -f baidu_success.txt allurl.txt)" ]; then
+          if [ -n "$(grep -v -F -x -f ./sendurl/baidu_success.txt ./sendurl/allurl.txt)" ]; then
              git config --global user.name 'github-actions[bot]'
              git config --global user.email 'github-actions[bot]@users.noreply.github.com'
              git add sendurl/
