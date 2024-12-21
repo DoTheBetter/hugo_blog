@@ -77,3 +77,7 @@ https://www.5dzone.com/tags/%E7%A1%AC%E4%BB%B6%E5%8F%82%E6%95%B0/
 https://www.5dzone.com/tags/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/
 https://www.5dzone.com/posts/%E5%9C%A8windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E4%BD%BF%E7%94%A8ollama%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0ai%E6%A8%A1%E5%9E%8B.html
 https://www.5dzone.com/posts/%E8%87%AA%E7%94%A8obsidian%E6%8F%92%E4%BB%B6.html
+https://www.5dzone.com/tags/proxmoxve/
+https://www.5dzone.com/categories/pve/
+https://www.5dzone.com/tags/%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/
+https://www.5dzone.com/posts/%E8%BD%BB%E6%9D%BE%E5%85%A5%E9%97%A8%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%9C%A8proxmox-ve%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F%E4%B8%8A%E4%BC%A0%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE.html
