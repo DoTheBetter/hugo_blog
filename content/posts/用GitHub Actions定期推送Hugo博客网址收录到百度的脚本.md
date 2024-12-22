@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-11T08:36:03+08:00
+lastmod: 2024-12-21T10:52:06+08:00
 tags:
   - Hugo
   - GitHubActions
@@ -12,7 +12,7 @@ categories:
 collections:
   - Hugo
 featuredImage: 
-featuredImagePreview: ""
+featuredImagePreview: 
 blog: "true"
 dir: posts
 ---
@@ -62,7 +62,7 @@ fi
 1. 上面的脚本中有一个 `$baidu_apiurl` 变量，需要在运行 workflows 脚本里引入。从<https://ziyuan.baidu.com/site/index>获取接口调用地址（需要登录百度帐号），格式为 `http://data.zz.baidu.com/urls?_site_=网站地址&_token_=准入密钥`，填入 Github 仓库的机密变量中，变量名为 `BAIDU_APIURL`。  
 ![](attachments/19667991d001d29c3cc7c2d57f21aa15_MD5.png)
 2. 因为需要 `baidu_success.txt` 文件内容对比，所以每次运行后都要用 `git push` 保存成功的链接，以便下次不再推送。
-3. 将代码放在 Hugo 生成静态网站之后：
+3. 将代码放 [^1] 在 Hugo 生成静态网站之后：
 ```yml
       ### … 省略其他步骤
       - name: Build Hugo static files
@@ -72,12 +72,14 @@ fi
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
-          if [ -s "$(grep -v -F -x -f ./sendurl/baidu_success.txt ./sendurl/allurl.txt)" ] && grep -q "success" ./sendurl/baidu_result.txt; then
+          if [ -n "$(grep -v -F -x -f ./sendurl/baidu_success.txt ./sendurl/allurl.txt)" ]; then
              git config --global user.name 'github-actions[bot]'
              git config --global user.email 'github-actions[bot]@users.noreply.github.com'
              git add sendurl/
              git commit -m "sendurl changes"
              git push --set-upstream origin master
+          else
+             echo "文件baidu_success.txt allurl.txt无差异，退出git提交。"
           fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
@@ -96,3 +98,5 @@ on:
 ## 3. 可能的改进
 
 1. 可以不需要 sendurl_baidu. sh 脚本，修改下相关路径就可以将里面的内容直接放在 workflows 脚本里运行。
+
+[^1]: 错误修复：修复 Baidu-action 步骤中的 if 判断（2024-12-21）
