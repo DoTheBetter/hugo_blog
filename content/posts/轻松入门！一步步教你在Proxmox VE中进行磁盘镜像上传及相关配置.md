@@ -1,7 +1,7 @@
 ---
 title: 轻松入门！一步步教你在Proxmox VE中进行磁盘镜像上传及相关配置
 date: 2024-12-20T11:50:00+08:00
-lastmod: 2024-12-20T14:23:16+08:00
+lastmod: 2024-12-20T18:19:57+08:00
 tags:
   - ProxmoxVE
   - 磁盘镜像
@@ -30,12 +30,12 @@ dir: posts
 
 ### 1.2. 通过 SFTP 上传  
 
-‌‌‌‌　　如果你喜欢使用 SFTP 软件，可以选择通过它连接到 Proxmox VE 服务器，并将镜像文件上传至任意目录。 但需要注意的是，如果上传的是 `.img.gz` 等压缩格式的文件，需要先解压操作，例如 `gzip -d openwrt.img.gz`。
+‌‌‌‌　　如果你喜欢使用 SFTP 软件，可以选择通过它连接到 Proxmox VE 服务器，并将镜像文件上传至任意目录。但需要注意的是，如果上传的是 `.img.gz` 等压缩格式的文件，上传后还需要解压操作，例如 `gzip -d openwrt.img.gz`。
 
 ## 2. 导入虚拟机
 
 ‌‌‌‌　　将磁盘镜像上传到 Proxmox VE 后，就可以使用命令将它导入到具体的虚拟机中了。  
-有关官方命令的使用说明，可以参考 [https://pve.proxmox.com/pve-docs/qm.1.html](https://pve.proxmox.com/pve-docs/qm.1.html) 。你需要确保该镜像格式被 [qemu-img](https://qemu-project.gitlab.io/qemu/tools/qemu-img.html) 支持：
+‌‌‌‌　　有关官方命令的使用说明，可以参考 [https://pve.proxmox.com/pve-docs/qm.1.html](https://pve.proxmox.com/pve-docs/qm.1.html) 。你需要确保该镜像格式被 [qemu-img](https://qemu-project.gitlab.io/qemu/tools/qemu-img.html) 支持：
 ```shell
 root@pve:~# qemu-img -h|grep "Supported formats"
 Supported formats: alloc-track backup-dump-drive blkdebug blklogwrites blkverify bochs cloop compress copy-before-write copy-on-read dmg file ftp ftps gluster host_cdrom host_device http https iscsi iser luks nbd null-aio null-co nvme parallels pbs preallocate qcow qcow2 qed quorum raw rbd replication snapshot-access throttle vdi vhdx vmdk vpc vvfat zeroinit
@@ -46,8 +46,7 @@ Supported formats: alloc-track backup-dump-drive blkdebug blklogwrites blkverify
 这个命令能将外部磁盘映像作为 VM 中未使用的磁盘导入，其用法如下：
 ```shell
 qm disk import <vmid> <source> <storage> [OPTIONS]
-简化用法：qm importdisk
-
+简化用法：qm importdisk <vmid> <source> <storage> [OPTIONS]
 说明：
   <vmid>: 已存在的虚拟机（唯一）ID，(100 - 999999999)范围内的整数
   <source>: 要导入的磁盘映像的路径
