@@ -81,3 +81,4 @@ https://www.5dzone.com/tags/proxmoxve/
 https://www.5dzone.com/categories/pve/
 https://www.5dzone.com/tags/%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/
 https://www.5dzone.com/posts/%E8%BD%BB%E6%9D%BE%E5%85%A5%E9%97%A8%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%9C%A8proxmox-ve%E4%B8%AD%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F%E4%B8%8A%E4%BC%A0%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE.html
+https://www.5dzone.com/posts/pve%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7%E4%B8%80%E9%94%AE%E8%BD%AC%E6%8D%A2%E8%99%9A%E6%8B%9F%E6%9C%BAid%E7%9A%84%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97.html
