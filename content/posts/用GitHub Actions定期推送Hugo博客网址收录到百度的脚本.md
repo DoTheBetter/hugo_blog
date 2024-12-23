@@ -1,7 +1,7 @@
 ---
 title: 用GitHub Actions定期推送Hugo博客网址收录到百度的脚本
 date: 2024-12-01T15:08:50+08:00
-lastmod: 2024-12-21T10:52:06+08:00
+lastmod: 2024-12-23T16:16:28+08:00
 tags:
   - Hugo
   - GitHubActions
@@ -33,7 +33,7 @@ cd sendurl
 # 是否存在baidu_success.txt文件，不存在则建立
 [ ! -f "baidu_success.txt" ] && touch baidu_success.txt
 
-# 进行文件比较
+# 执行 grep 命令并将结果存储在变量中
 result=$(grep -v -F -x -f baidu_success.txt allurl.txt)
 
 # 检查结果是否为空
@@ -48,6 +48,11 @@ if [ -n "$result" ]; then
   # 收录成功则追加 sendurl.txt 的内容到 success.txt 文件
   if grep -q "success" baidu_result.txt; then
     cat baidu_sendurl.txt >> baidu_success.txt
+    git config --global user.name 'github-actions[bot]'
+    git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+    git add .
+    git commit -m "sendurl changes"
+    git push --set-upstream origin master
   fi
 
   echo -e "百度搜索网址收录同步结果：\n$(cat baidu_result.txt)"
@@ -72,15 +77,6 @@ fi
         run: |
           chmod +x ./sendurl/sendurl_baidu.sh
           ./sendurl/sendurl_baidu.sh
-          if [ -n "$(grep -v -F -x -f ./sendurl/baidu_success.txt ./sendurl/allurl.txt)" ]; then
-             git config --global user.name 'github-actions[bot]'
-             git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-             git add sendurl/
-             git commit -m "sendurl changes"
-             git push --set-upstream origin master
-          else
-             echo "文件baidu_success.txt allurl.txt无差异，退出git提交。"
-          fi
         env:
           baidu_apiurl: ${{ secrets.BAIDU_APIURL }}   #脚本引入secrets变量
      ### … 省略其他步骤
@@ -99,4 +95,4 @@ on:
 
 1. 可以不需要 sendurl_baidu. sh 脚本，修改下相关路径就可以将里面的内容直接放在 workflows 脚本里运行。
 
-[^1]: 错误修复：修复 Baidu-action 步骤中的 if 判断（2024-12-21）
+[^1]: 错误修复：将 Baidu-action 步骤中的 `git push` 操作放入 sh 文件中（2024-12-23）
