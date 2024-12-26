@@ -18,21 +18,48 @@ jobs:
         fetch-depth: 0
 
     - name: Set up Git
+        run: |
+         git config --global user.name 'github-actions[bot]'
+         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Get latest commit hash
+        id: getHash
+        run: |
+            LATEST_HASH=$(git ls-remote --heads $REPO_ADDR | grep "refs/heads/$TARGET_BRANCH" | awk '{print $1}')
+            echo "commitHash=$LATEST_HASH" >> $GITHUB_OUTPUT
+        env:
+          REPO_ADDR: https://github.com/hugo-fixit/FixIt
+          TARGET_BRANCH: master
+
+    - name: Cache hash file
+        id: cacheHash
+        uses: actions/cache@v3
+        with:
+            path: .commitHash
+            key: commitHash_${{ steps.getHash.outputs.commitHash }}
+
+    - name: Save new commit hash
+      if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        echo ${{ steps.getHash.outputs.commitHash }} | tee .commitHash
 
     - name: Update theme
+      if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
-        if [ ! -e "$SUBFOLDER" ];then
-            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "第一次下载FixIt主题"
-        else
-            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "更新FixIt主题"
-        fi
-      env:
-        SUBFOLDER: themes/FixIt
-        REPO_ADDR: https://github.com/hugo-fixit/FixIt
-        TARGET_BRANCH: master
+        sync_repo() {
+            local repo_url=$1
+            local branch=$2
+            local target_dir=$3
+            reponame=$(basename "$repo_url")
+
+            rm -rf "$target_dir"
+            mkdir -p "$target_dir"
+            git clone --depth=1 --branch "$branch" "$repo_url" "$target_dir"
+            find "$target_dir" -maxdepth 1 -type d -name ".*" -exec rm -rf {} +
+            git add -A $target_dir
+            git commit -m "更新[$reponame]主题 $(date +"%Y.%m.%d")" || echo "没有需要提交的更改"
+        }
+        sync_repo "https://github.com/hugo-fixit/FixIt" "master" "themes/FixIt"
 
     - name: push changes
       run: |
