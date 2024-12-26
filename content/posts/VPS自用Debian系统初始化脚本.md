@@ -1,7 +1,7 @@
 ---
 title: VPS自用Debian系统初始化脚本
 date: 2024-11-20T14:46:31+08:00
-lastmod: 2024-12-05T20:09:37+08:00
+lastmod: 2024-12-26T11:03:36+08:00
 tags:
   - VPS
   - 系统优化
@@ -517,7 +517,7 @@ Echo_Blue "=============Installation status============="
 
 ####################################################################
 #生成计划任务
-cat > /root/update_system.sh << EOF
+cat > /root/update_system.sh << \EOF
 #!/bin/bash
 
 # 更新软件包列表
@@ -529,7 +529,7 @@ apt-get --purge remove -y
 # 自动删除旧内核（如果有新内核可用）
 apt-get clean
 # 检查是否需要重新启动
-echo 'Checking for reboot requirement at \$(date)'
+echo 'Checking for reboot requirement at $(date)'
 if [ -f /var/run/reboot-required ]; then
   # 如果找到 /var/run/reboot-required 文件，则执行以下命令
   echo "Reboot required. Initiating reboot..."
