@@ -1,5 +1,3 @@
-# File: .github/workflows/Update-HugoTheme.yml
-
 name: Update theme
 
 on:
@@ -12,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Set up Git
+      - name: Set up Git
         run: |
-         git config --global user.name 'github-actions[bot]'
-         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-    - name: Get latest commit hash
+      - name: Get latest commit hash
         id: getHash
         run: |
           LATEST_HASH=$(git ls-remote --heads $REPO_ADDR | grep "refs/heads/$TARGET_BRANCH" | awk '{print $1}')
@@ -31,42 +29,42 @@ jobs:
           REPO_ADDR: https://github.com/hugo-fixit/FixIt
           TARGET_BRANCH: master
 
-    - name: Cache hash file
+      - name: Cache hash file
         id: cacheHash
         uses: actions/cache@v3
         with:
-            path: .commitHash
-            key: commitHash_${{ steps.getHash.outputs.commitHash }}
+          path: .commitHash
+          key: commitHash_${{ steps.getHash.outputs.commitHash }}
 
-    - name: Save new commit hash
-      if: steps.cacheHash.outputs.cache-hit != 'true'
-      run: |
-        echo ${{ steps.getHash.outputs.commitHash }} | tee .commitHash
+      - name: Save new commit hash
+        if: steps.cacheHash.outputs.cache-hit != 'true'
+        run: |
+          echo ${{ steps.getHash.outputs.commitHash }} | tee .commitHash
 
-    - name: Update theme
-      if: steps.cacheHash.outputs.cache-hit != 'true'
-      run: |
-        sync_repo() {
-            local repo_url=$1
-            local branch=$2
-            local target_dir=$3
-            reponame=$(basename "$repo_url")
+      - name: Update theme
+        if: steps.cacheHash.outputs.cache-hit != 'true'
+        run: |
+          sync_repo() {
+              local repo_url=$1
+              local branch=$2
+              local target_dir=$3
+              reponame=$(basename "$repo_url")
 
-            rm -rf "$target_dir"
-            mkdir -p "$target_dir"
-            git clone --depth=1 --branch "$branch" "$repo_url" "$target_dir"
-            find "$target_dir" -maxdepth 1 -type d -name ".*" -exec rm -rf {} +
-            git add -A $target_dir
-            git commit -m "更新[$reponame]主题 $(date +"%Y.%m.%d")" || echo "没有需要提交的更改"
-        }
-        sync_repo "https://github.com/hugo-fixit/FixIt" "master" "themes/FixIt"
+              rm -rf "$target_dir"
+              mkdir -p "$target_dir"
+              git clone --depth=1 --branch "$branch" "$repo_url" "$target_dir"
+              find "$target_dir" -maxdepth 1 -type d -name ".*" -exec rm -rf {} +
+              git add -A $target_dir
+              git commit -m "更新[$reponame]主题 $(date +"%Y.%m.%d")" || echo "没有需要提交的更改"
+          }
+          sync_repo "https://github.com/hugo-fixit/FixIt" "master" "themes/FixIt"
 
-    - name: push changes
-      run: |
-        git push
+      - name: push changes
+        run: |
+          git push
 
-    - name: Cleanup Workflow
-      uses: Mattraks/delete-workflow-runs@main
-      with:
-        retain_days: 1
-        keep_minimum_runs: 2
+      - name: Cleanup Workflow
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          retain_days: 1
+          keep_minimum_runs: 2
