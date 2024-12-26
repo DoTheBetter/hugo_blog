@@ -1,4 +1,4 @@
-# File: .github/workflows/Update-HugoTheme.yml 
+# File: .github/workflows/Update-HugoTheme.yml
 
 name: Update theme
 
@@ -25,8 +25,8 @@ jobs:
     - name: Get latest commit hash
         id: getHash
         run: |
-            LATEST_HASH=$(git ls-remote --heads $REPO_ADDR | grep "refs/heads/$TARGET_BRANCH" | awk '{print $1}')
-            echo "commitHash=$LATEST_HASH" >> $GITHUB_OUTPUT
+          LATEST_HASH=$(git ls-remote --heads $REPO_ADDR | grep "refs/heads/$TARGET_BRANCH" | awk '{print $1}')
+          echo "commitHash=$LATEST_HASH" >> $GITHUB_OUTPUT
         env:
           REPO_ADDR: https://github.com/hugo-fixit/FixIt
           TARGET_BRANCH: master
