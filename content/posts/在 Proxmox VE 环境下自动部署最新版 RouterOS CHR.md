@@ -1,7 +1,7 @@
 ---
 title: 在 Proxmox VE 环境下自动部署最新版 RouterOS CHR
 date: 2024-12-28T20:13:06+08:00
-lastmod: 2024-12-29T15:36:12+08:00
+lastmod: 2024-12-29T15:49:25+08:00
 tags:
   - ProxmoxVE
   - 虚拟机
@@ -195,5 +195,5 @@ bash pve_install_ros.sh
 + `--cores 2`: 每个 CPU 插槽配置 2 个核心
 + `--virtio0`: 指定虚拟磁盘存储位置，使用本地存储，路径为 `local:$vmID/vm-$vmID-disk-1.qcow2`
 
-**提示:** 只配置了一个 `lan` 网口，建议将 RouterOS 默认用户名及密码修改后再添加 `wan` 口。  
+**提示: 只配置了一个 `lan` 网口，可自行在虚拟机管理界面添加 `wan` 口。**  
 ‌‌‌‌　　这个命令会创建一个相对轻量级的虚拟机，用于运行 RouterOS (ROS) ChromeOS 版本的配置。使用 virtio 驱动可以提供更好的性能，而 qcow2 格式的磁盘支持动态分配空间。
