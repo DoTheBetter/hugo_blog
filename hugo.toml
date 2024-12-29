@@ -195,7 +195,7 @@ ignoreLogs = [
 [module]
   [module.hugoVersion]
     extended = true
-    min = "0.134.1"
+    min = "0.140.0"
 
 # -------------------------------------------------------------------------------------
 # Hugo中的标记相关配置
@@ -476,6 +476,7 @@ ignoreLogs = [
       searchKey = ""  #Algolia Search Key
     #Fuse 搜索配置https://fusejs.io/api/options.html
     [params.search.fuse]
+      # https://fusejs.io/api/options.html
       isCaseSensitive = false  # 是否区分大小写
       minMatchCharLength = 2  # 最小匹配字符长度
       findAllMatches = true  # 是否查找所有匹配项
@@ -486,7 +487,7 @@ ignoreLogs = [
       useExtendedSearch = false  # 是否使用扩展搜索
       ignoreFieldNorm = false  # 是否忽略字段规范化
 
-  # FixIt 0.3.16 | 自定义搜索引擎（CSE）
+  # 自定义搜索引擎（CSE）
   [params.cse]
     # 搜索引擎: ["google", "bing"]
     engine = ""
@@ -555,9 +556,9 @@ ignoreLogs = [
     # 网站创立年份
     since = "2006"
     # 公网安备信息，仅在中国使用（支持 HTML 格式）
-    gov = "渝公网安备50011202500496号"
+    gov = '<img class="hugo-icon" src="/beian.mps.png"/> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=50011202504513" rel="noreferrer" target="_blank">渝公网安备50011202504513号</a>'
     # ICP 备案信息，仅在中国使用（支持 HTML 格式）
-    icp = '<a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2024034193号-1</a>'
+    icp = '<a href="https://beian.miit.gov.cn/" target="_blank">渝ICP备2024034193号-1</a>'
     # 许可协议信息（支持 HTML 格式）
     license = ''
     # Hugo 和主题信息
@@ -873,10 +874,10 @@ ignoreLogs = [
       id = ""
       # 如果您是自托管，则跟踪器的服务器url
       server = ""
-    # FixIt 0.3.16 | 百度分析
+    # 百度分析
     [params.analytics.baidu]
       id = ""
-    # FixIt 0.3.16 | Umami 分析
+    # Umami 分析
     [params.analytics.umami]
       data_website_id = "b5dd181a-87cc-4f2d-8c93-e510a83b3d03"
       src = "https://tongji.5dzone.com:100/L8PGBFu6.js"
@@ -886,10 +887,10 @@ ignoreLogs = [
     [params.analytics.plausible]
       data_domain = ""
       src = ""
-    # FixIt 0.3.16 | Cloudflare 分析
+    # Cloudflare 分析
     [params.analytics.cloudflare]
       token = ""
-    # FixIt 0.3.16 | Splitbee 分析
+    # Splitbee 分析
     [params.analytics.splitbee]
       enable = false
       # no cookie mode
@@ -970,6 +971,54 @@ ignoreLogs = [
     # "corner-indicator", "fill-left", "flash", "flat-top", "loading-bar", "mac-osx", "material", "minimal"]
     theme = "minimal"
   
+  # PostChat AI配置
+  # 根据你的帖子建立知识库，支持AI摘要、AI搜索、AI聊天机器人。
+  # 从我的邀请链接获取PostChat密钥，感谢您的支持！
+  # https://ai.tianli0.top/?InviteID=IRE1S88Z
+  [params.postChat]
+    enable = false
+    key = ""
+    # How users initiate chats: ["iframe", "magic"]
+    userMode = "iframe"
+    addButton = true
+    defaultInput = false
+    left = ""
+    bottom = ""
+    width = ""
+    height = ""
+    fill = ""
+    backgroundColor = ""
+    upLoadWeb = true
+    showInviteLink = true
+    userTitle = ""
+    userDesc = ""
+    # dom container to be blacked out, e.g. [".aplayer"]
+    blackDom = []
+    # Only for iframe mode
+    frameWidth = ""     # e.g. "375px"
+    frameHeight = ""    # e.g. "600px"
+    # only for magic mode
+    userIcon = ""
+    defaultChatQuestions = []
+    defaultSearchQuestions = []
+
+  # Summary AI 配置
+  # See https://postchat.zhheo.com/summary.html
+  [params.postSummary]
+    enable = false
+    # If you set `params.postChat.key`, you don't need to set `params.postSummary.key`
+    key = ""
+    title = ""
+    # themes options: ["", "simple", "yanzhi"]
+    theme = ""
+    postURL = ""
+    blacklist = ""
+    wordLimit = 1000
+    typingAnimate = true
+    beginningText = ""
+    loadingText = true
+
+
   # 全局 Feed 配置用于 RSS, Atom 和 JSON feed
   [params.feed]
     # 包含在 feed 中的文章数目。如果设置为 -1，代表所有文章
@@ -986,6 +1035,8 @@ ignoreLogs = [
   # Depends on open custom blocks https://fixit.lruihao.cn/references/blocks/
   [params.customPartials]
     head = []
+    menuDesktop = []
+    menuMobile = []
     profile = []
     aside = []
     comment = []
@@ -1119,9 +1170,9 @@ ignoreLogs = [
       # 是否显示代码块包装器的复制按钮
       copy = true
       # 是否显示代码块包装器的编辑按钮
-      edit = true
+      edit = false
       # 默认展开显示的代码行数
-      maxShownLines = 16
+      maxShownLines = 1000
     # Mapbox GL JS 配置 (https://docs.mapbox.com/mapbox-gl-js)
     [params.page.mapbox]
       # Mapbox GL JS 的 access token
@@ -1342,6 +1393,8 @@ ignoreLogs = [
         # 位于 "assets/"
         # 或者
         # someJavascript = "https://cdn.example.com/some.js"
+        codeblockjs = "js/codeblock.js"
+
     # 页面 SEO 配置
     [params.page.seo]
       # 图片 URL
