@@ -1,7 +1,7 @@
 ---
 title: 在 Proxmox VE 环境下自动部署最新版 RouterOS CHR
 date: 2024-12-28T20:13:06+08:00
-lastmod: 2024-12-29T15:49:25+08:00
+lastmod: 2024-12-29T20:21:20+08:00
 tags:
   - ProxmoxVE
   - 虚拟机
@@ -18,8 +18,8 @@ blog: "true"
 dir: posts
 ---
 
-‌‌‌‌　　近年来，在 Proxmox VE 平台上搭建家庭小主机成为了越来越多人的选择。很多用户倾向于在该平台上安装 RouterOS（CHR），以实现软路由解决方案的目的。然而，对于那些希望节省成本并称之为 " 白嫖党 " 的用户来说，每次手动更新和重新安装新版的 RouterOS（CHR）确实是一种繁琐的过程。  
-‌‌‌‌　　鉴于此，在 Mikrotik 官方发布的用于 Proxmox VE 下的 CHR 安装脚本 [CHR ProxMox 安装指南](https://help.mikrotik.com/docs/display/ROS/CHR+ProxMox+installation) 的基础上，我做了一些调整与增强。新增功能包括自动获取最新版本和提供扩展磁盘容量的支持。通过严格遵循本文中的步骤操作，你将能够快速构建并运行最新的 RouterOS(CHR) 环境于虚拟机中。  
+‌‌‌‌　　近年来，在 Proxmox VE 平台上搭建家庭小主机成为了越来越多人的选择。很多用户倾向于在该平台上安装 RouterOS（CHR），以实现软路由解决方案。然而，对于那些希望节省成本并称之为 " 白嫖党 " 的用户来说，每次手动更新安装新版的 RouterOS（CHR）确实是一种繁琐的过程。  
+‌‌‌‌　　鉴于此，我在 Mikrotik 官方发布的用于 Proxmox VE 下的 CHR 安装脚本 [CHR ProxMox 安装指南](https://help.mikrotik.com/docs/display/ROS/CHR+ProxMox+installation) 的基础上做了一些调整与增强，新增功能包括自动获取最新版本和提供扩展磁盘容量的支持。通过严格遵循本文中的步骤操作，你将能够快速构建并运行最新的 RouterOS (CHR) 环境于虚拟机中。  
 ‌‌‌‌　　这些改进旨在简化更新过程，并提升用户的使用体验。无论你是技术新秀还是资深玩家，都能在本文的指导下顺利完成操作。  
 
 ## 1. 安装准备
@@ -165,17 +165,14 @@ fi
 
 echo "############## 脚本结束 ##############"
 ```
-将以上脚本代码保存为 `pve_install_ros.sh` 放到 Proxmox VE 主机上，建议存放在 `/root/` 目录下，并确保其可执行权限：
-```shell
-chmod +x pve_install_ros.sh
-```
+将以上脚本代码保存为 `pve_install_ros.sh` 放到 Proxmox VE 主机上，建议存放在 `/root/` 目录下。
 
 ### 3.2. 执行脚本  
 
 ```shell
-bash pve_install_ros.sh
+chmod +x pve_install_ros.sh | bash pve_install_ros.sh
 ```
-‌‌‌‌　　您将被提示选择是否使用新版本 RouterOS 或指定特定的版本号。 按照屏幕上的说明进行操作，完成脚本配置。  
+‌‌‌‌您将被提示选择是否使用新版本 RouterOS 或指定特定的版本号， 按照屏幕上的说明进行操作完成脚本配置。  
 
 ### 3.3. 查看虚拟机
 
@@ -186,7 +183,7 @@ bash pve_install_ros.sh
 `qm create` 是 PVE 中创建虚拟机的基本命令，`$vmID` 是虚拟机的唯一标识符。  
 主要配置参数说明：
 + `--name ROS-chr-$version`: 设置虚拟机的名称，其中 `$version` 是一个变量，表示系统版本
-+ `--net0 virtio,bridge=vmbr0`: 配置网络接口，使用 virtio 驱动，连接到 vmbr0 网桥
++ `--net0 virtio,bridge=vmbr0`: 配置网络接口，使用 virtio 驱动，连接到 vmbr0 网桥。**提示: 只配置了一个 `lan` 网口，可自行在虚拟机管理界面添加 `wan` 口。**
 + `--bootdisk virtio0`: 指定启动磁盘为 virtio0
 + `--ostype l26`: 设置操作系统类型为 Linux 2.6/3-6. x kernel
 + `--memory 512`: 分配 512MB 内存
@@ -195,5 +192,4 @@ bash pve_install_ros.sh
 + `--cores 2`: 每个 CPU 插槽配置 2 个核心
 + `--virtio0`: 指定虚拟磁盘存储位置，使用本地存储，路径为 `local:$vmID/vm-$vmID-disk-1.qcow2`
 
-**提示: 只配置了一个 `lan` 网口，可自行在虚拟机管理界面添加 `wan` 口。**  
 ‌‌‌‌　　这个命令会创建一个相对轻量级的虚拟机，用于运行 RouterOS (ROS) ChromeOS 版本的配置。使用 virtio 驱动可以提供更好的性能，而 qcow2 格式的磁盘支持动态分配空间。
