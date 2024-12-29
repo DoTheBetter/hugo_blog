@@ -1,7 +1,7 @@
 ---
 title: 在 Proxmox VE 环境下自动部署最新版 RouterOS CHR
 date: 2024-12-28T20:13:06+08:00
-lastmod: 2024-12-29T20:21:20+08:00
+lastmod: 2024-12-29T20:38:38+08:00
 tags:
   - ProxmoxVE
   - 虚拟机
@@ -89,7 +89,7 @@ fi
 echo "## 准备ROS_CHR image文件下载和VM虚拟机创建！"
 # 询问用户版本，默认使用新版本号
 version=$last_version
-read -p "是否下载最新版本RouterOS Chr？ (Y/n): " confirm
+read -p "是否下载最新版本RouterOS Chr？ (Y=最新版/n=指定版本): " confirm
 if [[ ${confirm,,} == "n" ]]; then
     read -p "请输入Chr版本以部署（6.38.2,6.40.1等）： " user_version
     version=$user_version
