@@ -1,7 +1,7 @@
 ---
 title: PVE进阶技巧：一键转换虚拟机ID的实用指南
 date: 2024-12-22T20:23:24+08:00
-lastmod: 2024-12-22T22:34:04+08:00
+lastmod: 2024-12-29T15:35:14+08:00
 tags:
   - ProxmoxVE
   - 脚本
@@ -9,7 +9,8 @@ description: 本文介绍了一个用于在 Proxmox VE (PVE) 中更改虚拟机 
 categories:
   - PVE
   - 服务器
-collections: 
+collections:
+  - 原创
 featuredImage: 
 featuredImagePreview: 
 blog: "true"
