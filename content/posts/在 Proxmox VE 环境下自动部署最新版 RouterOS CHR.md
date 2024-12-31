@@ -1,7 +1,7 @@
 ---
 title: 在 Proxmox VE 环境下自动部署最新版 RouterOS CHR
 date: 2024-12-28T20:13:06+08:00
-lastmod: 2024-12-29T20:38:38+08:00
+lastmod: 2024-12-31T20:29:52+08:00
 tags:
   - ProxmoxVE
   - 虚拟机
@@ -12,7 +12,7 @@ categories:
   - PVE
   - 服务器
 collections: 
-featuredImage: ""
+featuredImage: https://www.bing.com/th?id=OHR.MountFieldNP_ZH-CN6004420782_1366x768.jpg
 featuredImagePreview: ""
 blog: "true"
 dir: posts
