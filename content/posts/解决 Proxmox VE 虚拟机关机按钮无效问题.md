@@ -1,7 +1,7 @@
 ---
 title: 解决 Proxmox VE 虚拟机关机按钮无效问题
 date: 2024-12-23T14:45:39+08:00
-lastmod: 2024-12-31T20:38:12+08:00
+lastmod: 2024-12-31T20:41:20+08:00
 tags:
   - ProxmoxVE
   - 虚拟机
@@ -10,8 +10,8 @@ categories:
   - PVE
   - 服务器
 collections: 
-featuredImage: https://www.bing.com/th?id=OHR.MouseholeXmas_ZH-CN3079184443_400x240.jpg
-featuredImagePreview: https://www.bing.com/th?id=OHR.MouseholeXmas_ZH-CN3079184443_400x240.jpg
+featuredImage: https://www.bing.com/th?id=OHR.MouseholeXmas_ZH-CN3079184443_800x480.jpg
+featuredImagePreview: https://www.bing.com/th?id=OHR.MouseholeXmas_ZH-CN3079184443_800x480.jpg
 blog: "true"
 dir: posts
 ---
