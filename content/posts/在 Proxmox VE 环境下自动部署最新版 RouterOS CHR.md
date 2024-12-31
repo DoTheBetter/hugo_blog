@@ -1,7 +1,7 @@
 ---
 title: 在 Proxmox VE 环境下自动部署最新版 RouterOS CHR
 date: 2024-12-28T20:13:06+08:00
-lastmod: 2024-12-31T20:33:23+08:00
+lastmod: 2024-12-31T20:41:29+08:00
 tags:
   - ProxmoxVE
   - 虚拟机
@@ -12,8 +12,8 @@ categories:
   - PVE
   - 服务器
 collections: 
-featuredImage: https://www.bing.com/th?id=OHR.CoralTurtle_ZH-CN4771437860_400x240.jpg
-featuredImagePreview: https://www.bing.com/th?id=OHR.CoralTurtle_ZH-CN4771437860_400x240.jpg
+featuredImage: https://www.bing.com/th?id=OHR.CoralTurtle_ZH-CN4771437860_800x480.jpg
+featuredImagePreview: https://www.bing.com/th?id=OHR.CoralTurtle_ZH-CN4771437860_800x480.jpg
 blog: "true"
 dir: posts
 ---
