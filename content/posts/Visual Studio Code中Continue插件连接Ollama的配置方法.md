@@ -1,7 +1,7 @@
 ---
 title: Visual Studio Code中Continue插件连接Ollama的配置方法
 date: 2025-01-02T10:21:39+08:00
-lastmod: 2025-01-02T10:24:59+08:00
+lastmod: 2025-01-02T10:31:57+08:00
 tags:
   - Ollama
   - VisualStudioCode
@@ -32,16 +32,18 @@ Continue 插件大多数自定义配置可以通过编辑 `config.json` 文件�
 
 ## 2. Continue 插件配置 Ollama 模型  
 
-官方配置说明： [config.json Reference | Continue](https://docs.continue.dev/reference)  
-
-> [!NOTE] 说明  
-> Continue 插件连接 Ollama 时，如果 Ollama 的 API 为默认值 `http://localhost:11434`，则 `apiBase` 可不用填写。
-
 ### 2.1. 聊天模型  
 
 + `title` (**必需**)：模型的标题，显示在下拉菜单等中。
 + `provider` (**必需**)：模型的提供者，它决定了类型和交互方法。选项包括 `openai`、`ollama` 等。
 + `model` (**必需**)：模型的名称，用于提示模板自动检测。使用 `AUTODETECT` 特殊名称获取所有可用模型。
++ `apiKey`：OpenAI、Anthropic 和 Cohere 等提供商所需的 API 密钥。
++ `apiBase`：API 地址。
+
+更多参数见官方配置说明： [config.json Reference | Continue](https://docs.continue.dev/reference)  
+
+> [!NOTE] 说明  
+> Continue 插件连接 Ollama 时，如果 Ollama 的 API 为默认值 `http://localhost:11434`，则 `apiBase` 可不用填写。
 
 ```json
 "models": [
