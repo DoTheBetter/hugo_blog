@@ -1,7 +1,7 @@
 ---
 title: Visual Studio Code中Continue插件连接Ollama的配置方法
 date: 2025-01-02T10:21:39+08:00
-lastmod: 2025-01-02T10:21:54+08:00
+lastmod: 2025-01-02T10:24:59+08:00
 tags:
   - Ollama
   - VisualStudioCode
@@ -25,7 +25,7 @@ Continue 插件大多数自定义配置可以通过编辑 `config.json` 文件�
 2. 通过 Visual Studio Code 的侧边栏也能找到这个文件：  
 ![](attachments/AA341FDCB056CB9B5DE9686CC739FD42_MD5.jpg)  
 
-> [!NOTE]  
+> [!NOTE] 说明  
 > `config.json` 会在第一次使用 Continue 时创建。如果想将配置重置为默认值，可以删除此文件，Continue 将自动使用默认设置重新创建它。
 >
 > 保存 `config.json` 时，Continue 将自动刷新以实时更改。
@@ -34,7 +34,7 @@ Continue 插件大多数自定义配置可以通过编辑 `config.json` 文件�
 
 官方配置说明： [config.json Reference | Continue](https://docs.continue.dev/reference)  
 
-> [!NOTE]  
+> [!NOTE] 说明  
 > Continue 插件连接 Ollama 时，如果 Ollama 的 API 为默认值 `http://localhost:11434`，则 `apiBase` 可不用填写。
 
 ### 2.1. 聊天模型  
