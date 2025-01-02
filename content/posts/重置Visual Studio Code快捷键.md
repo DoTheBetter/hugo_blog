@@ -1,7 +1,7 @@
 ---
 title: 重置Visual Studio Code快捷键
 date: 2025-01-03T07:53:52+08:00
-lastmod: 2025-01-03T07:54:27+08:00
+lastmod: 2025-01-03T07:58:10+08:00
 tags:
   - 快捷键设置
   - 软件配置
@@ -16,7 +16,8 @@ blog: "true"
 dir: posts
 ---
 
-‌‌‌‌　　在使用 Continue 插件时，我发现其启动快捷键 `Ctrl+I` 与 Visual Studio Code 自身的 Copilot 插件产生了冲突，因此我将 Continue 的快捷键调整为了 `Alt+I`。然而，当我想要恢复为默认快捷键设置时，却花了相当多时间才找到相关设置。以下是重新设置或更改快捷键的方法：
+‌‌‌‌　　在使用 Continue 插件时，我发现其启动快捷键 `Ctrl+I` 与 Visual Studio Code 自身的 Copilot 插件产生了冲突，因此我将 Continue 的快捷键调整为了 `Alt+I`。然而，当我想要恢复为默认快捷键设置时，却花了相当多时间才找到相关设置。  
+‌‌‌‌　　以下是重新设置或更改快捷键的方法：
 
 ## 1. 首先找到全局快捷键设置  
 
