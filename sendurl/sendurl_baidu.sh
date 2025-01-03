@@ -23,7 +23,9 @@ if [ -n "$result" ]; then
     cat baidu_sendurl.txt >> baidu_success.txt
     git config --global user.name 'github-actions[bot]'
     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-    git add .
+	cd ..
+    cp -f public/readme.md README.md
+    git add README.md sendurl/*
     git commit -m "sendurl changes"
     git push --set-upstream origin master
   fi
