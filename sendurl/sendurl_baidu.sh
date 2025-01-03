@@ -21,13 +21,6 @@ if [ -n "$result" ]; then
   # 收录成功则追加 sendurl.txt 的内容到 success.txt 文件
   if grep -q "success" baidu_result.txt; then
     cat baidu_sendurl.txt >> baidu_success.txt
-    git config --global user.name 'github-actions[bot]'
-    git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-	cd ..
-    cp -f public/readme.md README.md
-    git add README.md sendurl/*
-    git commit -m "sendurl changes"
-    git push --set-upstream origin master
   fi
 
   echo -e "百度搜索网址收录同步结果：\n$(cat baidu_result.txt)"
