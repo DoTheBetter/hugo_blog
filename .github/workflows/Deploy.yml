@@ -74,7 +74,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           cp -f public/readme.md README.md
           git add .
-          git commit -m "$(date +"%Y.%m.%d")：$repo_url" || echo "没有需要提交的更改"
+          git commit -m "$(date +"%Y.%m.%d")" || echo "没有需要提交的更改"
           git push --set-upstream origin master
 
 #      - name: Deploy to Github Pages
