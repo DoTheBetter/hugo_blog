@@ -1,12 +1,12 @@
 ---
 title: Caddy开启网站附件文件夹防盗链
 date: 2025-01-04T09:02:30+08:00
-lastmod: 2025-01-04T09:09:22+08:00
+lastmod: 2025-01-04T09:17:49+08:00
 tags:
   - Caddy
   - 防盗链
   - Hugo
-description: 本文介绍了如何在阿里云服务器上使用自制的 Caddy 服务器 Docker 镜像，通过配置防盗链规则来保护博客附件目录免受非法访问。文章详细展示了 Caddy 配置文件中的关键片段，并提供了应对空白 referer 的新策略参考链接。
+description: 本文介绍了如何在阿里云服务器上使用自制的 Caddy 服务器 Docker 镜像，通过配置防盗链规则来保护Hugo博客附件目录免受非法访问。文章详细展示了 Caddy 配置文件中的关键片段，并提供了应对空白 referer 的新策略参考链接。
 categories:
   - 博客
 collections: 
