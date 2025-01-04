@@ -1,11 +1,12 @@
 # 胡说八道
 
-共计 22 篇文章
+共计 23 篇文章
 
 ## 2025
 
-共计 2 篇文章
+共计 3 篇文章
 
+- 01-04 [Caddy开启网站附件文件夹防盗链](https://www.5dzone.com/posts/caddy%E5%BC%80%E5%90%AF%E7%BD%91%E7%AB%99%E9%99%84%E4%BB%B6%E6%96%87%E4%BB%B6%E5%A4%B9%E9%98%B2%E7%9B%97%E9%93%BE.html "2025-01-04 09:02:30")
 - 01-03 [重置Visual Studio Code快捷键](https://www.5dzone.com/posts/%E9%87%8D%E7%BD%AEvisual-studio-code%E5%BF%AB%E6%8D%B7%E9%94%AE.html "2025-01-03 07:53:52")
 - 01-02 [Visual Studio Code中Continue插件连接Ollama的配置方法](https://www.5dzone.com/posts/visual-studio-code%E4%B8%ADcontinue%E6%8F%92%E4%BB%B6%E8%BF%9E%E6%8E%A5ollama%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95.html "2025-01-02 10:21:39")
 
